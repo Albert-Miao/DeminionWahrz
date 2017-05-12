@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<workspace>
+	<settings>
+		<label>DeminionWahrz</label>
+	</settings>
+	<users>
+		<user>
+			<path>DeminionWahrz.jcu</path>
+		</user>
+	</users>
+	<projects>
+		<project>
+			<path>DeminionWahrz.jcp</path>
+		</project>
+	</projects>
+</workspace>
