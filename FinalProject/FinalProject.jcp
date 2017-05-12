@@ -19,7 +19,7 @@
 			<applet_ref/>
 			<debugger_ref/>
 			<param/>
-			<run/>
+			<run>Main</run>
 			<verify>true</verify>
 		</runtime>
 	</runtimes>
@@ -27,7 +27,7 @@
 	<files>
 		<include>
 			<fileitem>
-				<path>DrawStuff.java</path>
+				<path>GameGrid.java</path>
 			</fileitem>
 			<fileitem>
 				<path>Main.java</path>

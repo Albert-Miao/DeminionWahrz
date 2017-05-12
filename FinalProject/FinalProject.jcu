@@ -12,16 +12,16 @@
 	</projects>
 	<open_files>
 		<docitem>
-			<path>DrawStuff.java</path>
+			<path>Main.java</path>
 			<source>true</source>
 			<index>0</index>
 			<active>false</active>
 		</docitem>
 		<docitem>
-			<path>Main.java</path>
+			<path>GameGrid.java</path>
 			<source>true</source>
 			<index>1</index>
-			<active>false</active>
+			<active>true</active>
 		</docitem>
 		<docitem>
 			<path>Unit.java</path>
@@ -33,7 +33,7 @@
 			<path>Tile.java</path>
 			<source>true</source>
 			<index>3</index>
-			<active>true</active>
+			<active>false</active>
 		</docitem>
 	</open_files>
 </workspace_user>
