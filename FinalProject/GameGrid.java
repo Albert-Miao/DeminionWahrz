@@ -5,6 +5,7 @@ import javax.swing.ImageIcon;
 
 public class GameGrid extends JComponent
   {
+  
     public void paint(Graphics g)
     {
       Graphics2D graph2 = (Graphics2D)g;
