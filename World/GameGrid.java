@@ -3,21 +3,30 @@ import java.awt.*;
 import javax.swing.JComponent;
 import javax.swing.ImageIcon;
 
+import java.util.ArrayList;
+
+import World.Location;
+import GUI.Tile;
+
+
+
 public class GameGrid extends JComponent
   {
   	public Tile[][] grid;
-  	
-  	public GameGrid()
+
+  	public GameGrid(int rows, int cols)
   	{
-  		grid = new Tile[20][20];
+  		grid = new Tile[rows][cols];
   		populateGridArray();
   	}
+  	
   	public void paint(Graphics g)
   	{
   	  Graphics2D graphic = (Graphics2D)g;
       graphic.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
       makeGrid(graphic);
   	}
+  	
   	private void populateGridArray()
   	{
   	  /*java.net.URL imgUrl1 = getClass().getResource(backgroundName);WILL BE IMPLEMENTED LATER
