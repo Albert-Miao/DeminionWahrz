@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 public class GameGrid extends JComponent
   {
   	public Tile[][] grid;
+  	
   	public GameGrid()
   	{
   		grid = new Tile[20][20];
@@ -19,7 +20,7 @@ public class GameGrid extends JComponent
   	}
   	private void populateGridArray()
   	{
-  	  /*java.net.URL imgUrl1 = getClass().getResource(backgroundName);
+  	  /*java.net.URL imgUrl1 = getClass().getResource(backgroundName);WILL BE IMPLEMENTED LATER
   	  *ImageIcon gridBackground = new ImageIcon(imgUrl1);
   	  *gridBackground.paintIcon(this,g,0,0);
   	  */

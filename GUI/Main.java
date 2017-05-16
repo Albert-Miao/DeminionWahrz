@@ -10,7 +10,7 @@ public class Main extends JFrame{
 	
   public static void main(String[] args)
   {
-    new Main();
+     new Main();
   }     
   public Main()
   {
@@ -18,9 +18,6 @@ public class Main extends JFrame{
     this.setTitle("Test");
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.add(new GameGrid(), BorderLayout.CENTER);
-    this.setVisible(true);
-    System.out.println("BOOP");
-    
-    
+    this.setVisible(true);  
   }
 }
