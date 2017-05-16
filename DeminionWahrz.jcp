@@ -25,7 +25,19 @@
 	</runtimes>
 	<libraries/>
 	<files>
-		<include/>
+		<include>
+			<folderitem>
+				<path>World</path>
+			</folderitem>
+			<fileitem>
+				<path>World\Grid.java</path>
+				<folder>World</folder>
+			</fileitem>
+			<fileitem>
+				<path>World\Location.java</path>
+				<folder>World</folder>
+			</fileitem>
+		</include>
 	</files>
 	<tasks/>
 </project>

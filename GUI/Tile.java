@@ -1,7 +1,11 @@
+package GUI;
+
 import java.awt.geom.*;
 import java.awt.*;
 import javax.swing.JComponent;
 import javax.swing.ImageIcon;
+
+
 
 public class Tile
 {

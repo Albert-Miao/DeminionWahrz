@@ -8,6 +8,35 @@
 		<project>
 			<label>DeminionWahrz</label>
 			<showfiles>false</showfiles>
+			<folderitem>
+				<path>World</path>
+			</folderitem>
 		</project>
 	</projects>
+	<open_files>
+		<docitem>
+			<path>Element\Element.java</path>
+			<source>true</source>
+			<index>0</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>World\Location.java</path>
+			<source>true</source>
+			<index>1</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>World\Grid.java</path>
+			<source>true</source>
+			<index>2</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>GUI\GameGrid.java</path>
+			<source>true</source>
+			<index>3</index>
+			<active>true</active>
+		</docitem>
+	</open_files>
 </workspace_user>
