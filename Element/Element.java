@@ -1,5 +1,5 @@
-import info.gridworld.grid.Grid;
-import info.gridworld.grid.Location;
+import World.Grid;
+import World.Location;
 
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
