@@ -1,3 +1,5 @@
+package World;
+
 import java.awt.geom.*;
 import java.awt.*;
 import javax.swing.JComponent;
@@ -7,6 +9,7 @@ import java.util.ArrayList;
 
 import World.Location;
 import GUI.Tile;
+import Element.Element;
 
 
 
@@ -17,7 +20,12 @@ public class GameGrid extends JComponent
 	
 	public GameGrid(int rows, int cols)
 	{
+		if(rows <= 0)
+			throw new IllegalArgumentException("rows <= 0");
+		if(cols <= 0)
+			throw new IllegalArgumentException("cols <= 0");
 		grid = new Tile[rows][cols];
+		occupantGrid = new Element[rows][cols];
 		populateGridArray();
 	}
 	
@@ -106,6 +114,99 @@ public class GameGrid extends JComponent
         }
 
         return theLocations;
+    }
+    
+    public Tile putTile(Tile t, Location loc){
+    	if (!isValid(loc))
+            throw new IllegalArgumentException("Location " + loc
+                    + " is not valid");
+        if (t == null)
+            throw new NullPointerException("t == null");
+            
+        Tile oldTile = getTileAt(loc);
+        grid[loc.getRow()][loc.getCol()] = t;
+        return oldTile;
+    }
+    
+    public Element putElement(Element e, Location loc){
+    	if (!isValid(loc))
+            throw new IllegalArgumentException("Location " + loc
+                    + " is not valid");
+        if (e == null)
+            throw new NullPointerException("element == null");
+            
+        Element oldElement = getElementAt(loc);
+        occupantGrid[loc.getRow()][loc.getCol()] = e;
+        return oldElement;
+    }
+    
+    public Element removeElement(Location loc)
+    {
+        if (!isValid(loc))
+            throw new IllegalArgumentException("Location " + loc
+                    + " is not valid");
+        
+        // Remove the object from the grid.
+        Element r = getElementAt(loc);
+        occupantGrid[loc.getRow()][loc.getCol()] = null;
+        return r;
+    }
+    
+    public ArrayList<Element> getNeighbors(Location loc)
+    {
+        ArrayList<Element> neighbors = new ArrayList<Element>();
+        for (Location neighborLoc : getOccupiedAdjacentLocations(loc))
+            neighbors.add(getElementAt(neighborLoc));
+        return neighbors;
+    }
+    
+    public ArrayList<Location> getValidAdjacentLocations(Location loc)
+    {
+        ArrayList<Location> locs = new ArrayList<Location>();
+
+        int d = Location.NORTH;
+        for (int i = 0; i < Location.FULL_CIRCLE / Location.HALF_RIGHT; i++)
+        {
+            Location neighborLoc = loc.getAdjacentLocation(d);
+            if (isValid(neighborLoc))
+                locs.add(neighborLoc);
+            d = d + Location.HALF_RIGHT;
+        }
+        return locs;
+    }
+    
+    public ArrayList<Location> getEmptyAdjacentLocations(Location loc)
+    {
+        ArrayList<Location> locs = new ArrayList<Location>();
+        for (Location neighborLoc : getValidAdjacentLocations(loc))
+        {
+            if (getElementAt(neighborLoc) == null)
+                locs.add(neighborLoc);
+        }
+        return locs;
+    }
+    
+    public ArrayList<Location> getOccupiedAdjacentLocations(Location loc)
+    {
+        ArrayList<Location> locs = new ArrayList<Location>();
+        for (Location neighborLoc : getValidAdjacentLocations(loc))
+        {
+            if (getElementAt(neighborLoc) != null)
+                locs.add(neighborLoc);
+        }
+        return locs;
+    }
+    
+    public String toString()
+    {
+        String s = "{";
+        for (Location loc : getOccupiedLocations())
+        {
+            if (s.length() > 1)
+                s += ", ";
+            s += loc + "=" + getElementAt(loc);
+        }
+        return s + "}";
     }
 }
   
