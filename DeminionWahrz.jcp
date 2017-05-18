@@ -19,7 +19,7 @@
 			<applet_ref/>
 			<debugger_ref/>
 			<param/>
-			<run/>
+			<run>Main</run>
 			<verify>true</verify>
 		</runtime>
 	</runtimes>
@@ -29,6 +29,12 @@
 			<folderitem>
 				<path>World</path>
 			</folderitem>
+			<folderitem>
+				<path>GUI</path>
+			</folderitem>
+			<folderitem>
+				<path>Element</path>
+			</folderitem>
 			<fileitem>
 				<path>World\Grid.java</path>
 				<folder>World</folder>
@@ -36,6 +42,22 @@
 			<fileitem>
 				<path>World\Location.java</path>
 				<folder>World</folder>
+			</fileitem>
+			<fileitem>
+				<path>GUI\Main.java</path>
+				<folder>GUI</folder>
+			</fileitem>
+			<fileitem>
+				<path>GUI\Tile.java</path>
+				<folder>GUI</folder>
+			</fileitem>
+			<fileitem>
+				<path>Element\Spearman.java</path>
+				<folder>Element</folder>
+			</fileitem>
+			<fileitem>
+				<path>Element\Unit.java</path>
+				<folder>Element</folder>
 			</fileitem>
 		</include>
 	</files>

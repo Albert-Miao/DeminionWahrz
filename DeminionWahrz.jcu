@@ -11,11 +11,17 @@
 			<folderitem>
 				<path>World</path>
 			</folderitem>
+			<folderitem>
+				<path>GUI</path>
+			</folderitem>
+			<folderitem>
+				<path>Element</path>
+			</folderitem>
 		</project>
 	</projects>
 	<open_files>
 		<docitem>
-			<path>Element\Element.java</path>
+			<path>GUI\Main.java</path>
 			<source>true</source>
 			<index>0</index>
 			<active>false</active>
@@ -30,6 +36,30 @@
 			<path>World\GameGrid.java</path>
 			<source>true</source>
 			<index>2</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>Element\Element.java</path>
+			<source>true</source>
+			<index>3</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>Element\Unit.java</path>
+			<source>true</source>
+			<index>4</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>GUI\Tile.java</path>
+			<source>true</source>
+			<index>5</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>Element\Spearman.java</path>
+			<source>true</source>
+			<index>6</index>
 			<active>true</active>
 		</docitem>
 	</open_files>
