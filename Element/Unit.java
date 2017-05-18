@@ -23,6 +23,11 @@ public abstract class Unit //extends Element
 		 return attack;
 	 }
 	 
+	 public void setAttack(int att)
+	 {
+	 	attack = att;
+	 }
+	 
 	 public Location[] getMovable(){
 	 	//to be implemented
 	 }

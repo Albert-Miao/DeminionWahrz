@@ -12,6 +12,7 @@ public abstract class Element{
 	private String name;
 	private String imageName;
 	private ImageIcon img;
+	private enum Race {TOKKOKINO,AZURE,NEUTRAL};
 	
 	public Element(String n, String imageName, int h){
 		gr = null;
