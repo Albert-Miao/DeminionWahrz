@@ -65,5 +65,6 @@ public class GameGrid extends JComponent
 		}
   	  
     }
+   
   }
   
