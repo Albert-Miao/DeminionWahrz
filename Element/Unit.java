@@ -1,9 +1,11 @@
+package Element;
+
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 
 import info.gridworld.grid.Location;
 
-public abstract class Unit //extends Element
+public abstract class Unit extends Element
 {
 	 private int attack;
 	 private int movement;
@@ -26,6 +28,11 @@ public abstract class Unit //extends Element
 	 public void setAttack(int att)
 	 {
 	 	attack = att;
+	 }
+	 
+	 public void setDefense(int def)
+	 {
+	 	defense = def;
 	 }
 	 
 	 public Location[] getMovable(){

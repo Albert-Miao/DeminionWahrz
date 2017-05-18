@@ -1,3 +1,5 @@
+package Element;
+
 import World.GameGrid;
 import World.Location;
 
@@ -13,14 +15,17 @@ public abstract class Element{
 	private String imageName;
 	private ImageIcon img;
 	private enum Race {TOKKOKINO,AZURE,NEUTRAL};
+	private String unitType;
 	
-	public Element(String n, String imgName, int h){
+	public Element(String n, String imageName, int h, Race r, String ut){
 		gr = null;
 		loc = null;
 		health = h;
 		name = n;
 		imageName = imgName;
 		img = new ImageIcon(imgName);
+		race = r;
+		unitType = ut;
 	}
 	
 	public String getName(){
@@ -42,7 +47,10 @@ public abstract class Element{
 	{
 		return img;
 	}
-	
+	public getUnitType()
+	{
+		return unitType();
+	}
 	public void setGrid(){
 		//to be implemented
 	}
