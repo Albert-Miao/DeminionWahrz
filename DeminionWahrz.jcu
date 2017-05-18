@@ -27,15 +27,9 @@
 			<active>false</active>
 		</docitem>
 		<docitem>
-			<path>World\Grid.java</path>
+			<path>World\GameGrid.java</path>
 			<source>true</source>
 			<index>2</index>
-			<active>false</active>
-		</docitem>
-		<docitem>
-			<path>GUI\GameGrid.java</path>
-			<source>true</source>
-			<index>3</index>
 			<active>true</active>
 		</docitem>
 	</open_files>
