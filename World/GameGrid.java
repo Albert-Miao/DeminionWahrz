@@ -160,6 +160,14 @@ public class GameGrid extends JComponent
         return neighbors;
     }
     
+    public ArrayList<Tile> getNearTiles(Location loc){
+    	
+    	ArrayList<Tile> nearTiles = new ArrayList<Tile>();
+    	for(Location neighborLoc : getValidAdjacentLocations(loc))
+    		nearTiles.add(getTileAt(neighborLoc));
+    	return nearTiles;
+    }
+    
     public ArrayList<Location> getValidAdjacentLocations(Location loc)
     {
         ArrayList<Location> locs = new ArrayList<Location>();
