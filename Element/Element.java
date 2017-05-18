@@ -1,4 +1,4 @@
-import World.Grid;
+import World.GameGrid;
 import World.Location;
 
 import java.awt.Graphics;
@@ -7,14 +7,14 @@ import javax.swing.ImageIcon;
 public abstract class Element{
 	
 	private Location loc;
-	private Grid<Element> gr;
+	private GameGrid gr;
 	private int health;
 	private String name;
 	private String imageName;
 	private ImageIcon img;
 	private enum Race {TOKKOKINO,AZURE,NEUTRAL};
 	
-	public Element(String n, String imageName, int h){
+	public Element(String n, String imgName, int h){
 		gr = null;
 		loc = null;
 		health = h;
@@ -27,7 +27,7 @@ public abstract class Element{
 		return name;
 	}
 	
-	public Grid<Element> getElement() {
+	public GameGrid getGameGrid() {
 		return gr;
 	}
 	
