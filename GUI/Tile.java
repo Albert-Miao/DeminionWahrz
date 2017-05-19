@@ -4,23 +4,29 @@ import java.awt.geom.*;
 import java.awt.*;
 import javax.swing.JComponent;
 import javax.swing.ImageIcon;
+import World.Location;
 import Element.Unit;
 
 
 public class Tile
 {
-	private int xPos;
-	private int yPos;
-	private boolean activeUnit;
-	private int terrainType; //1: Normal, 2: Mountain, 3: Forest,4: Deep Sand 
 	
-	public Tile(int x, int y,int terrain)
+	private boolean activeUnit;
+	private int terrainType; //1: Normal, 2: Mountain, 3: Forest,4: Deep Sand
+	private Location location;
+	private int row;
+	private int col;
+	
+	public Tile(int r, int c,int terrain)
 	{
-		xPos = x;
-		yPos = y;
+		//xPos = x;
+		//yPos = y;
+		row = r;
+		col = c;
+		location = new Location(row,col);
 		terrainType = terrain;
 	}
-	public void makeTile(Graphics2D graphic)
+	/*public void makeTile(Graphics2D graphic)
 	{
 	    Shape line1 = new Line2D.Float(xPos,yPos,xPos,yPos + 50);
 	    graphic.setPaint(Color.BLACK);
@@ -35,7 +41,12 @@ public class Tile
 	    graphic.draw(line2);
 	    graphic.draw(line3);
 	    graphic.draw(line4);
-	}
+	}*/
+   public Location getLocation()
+   {
+   		return location;
+   }
+   
    public void checkTileStats(Unit u)
    {
    		switch(this.terrainType){

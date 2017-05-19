@@ -17,7 +17,7 @@ public class Main extends JFrame{
     this.setSize(1500,800);
     this.setTitle("Test");
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.add(new GameGrid(), BorderLayout.CENTER);
+    this.add(new GameGrid(15, 12), BorderLayout.CENTER);
     this.setVisible(true);  
   }
 }

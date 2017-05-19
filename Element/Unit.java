@@ -11,6 +11,7 @@ public abstract class Unit extends Element
 	 private int movement;
 	 private int rangeMin;
 	 private int rangeMax;
+	 private Tile currentTile;
 	  
 	 public Unit(int att, int rngeMin, int rngeMax, int mvement)
 	 {
@@ -18,6 +19,7 @@ public abstract class Unit extends Element
 		rangeMin = rngeMin;
 		rangeMax = rngeMax;
 		movement = mvement;
+		
 	 }
 	 
 	 public int getAttack()
