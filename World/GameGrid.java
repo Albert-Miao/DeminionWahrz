@@ -83,11 +83,11 @@ public class GameGrid extends JComponent
     	return grid[0].length;
     }
     
-    public Tile getTileAt(Location loc){
+    public Tile getTile(Location loc){
     	return grid[loc.getRow()][loc.getCol()];
     }
     
-    public Element getElementAt(Location loc) {
+    public Element getElement(Location loc) {
     	return occupantGrid[loc.getRow()][loc.getCol()];
     }
     
@@ -108,7 +108,7 @@ public class GameGrid extends JComponent
             {
                 // If there's an object at this location, put it in the array.
                 Location loc = new Location(r, c);
-                if (getElementAt(loc) != null)
+                if (getElement(loc) != null)
                     theLocations.add(loc);
             }
         }
@@ -123,7 +123,7 @@ public class GameGrid extends JComponent
         if (t == null)
             throw new NullPointerException("t == null");
             
-        Tile oldTile = getTileAt(loc);
+        Tile oldTile = getTile(loc);
         grid[loc.getRow()][loc.getCol()] = t;
         return oldTile;
     }
@@ -135,9 +135,18 @@ public class GameGrid extends JComponent
         if (e == null)
             throw new NullPointerException("element == null");
             
-        Element oldElement = getElementAt(loc);
+        Element oldElement = getElement(loc);
         occupantGrid[loc.getRow()][loc.getCol()] = e;
         return oldElement;
+    }
+    
+    public Tile removeTile(Location loc){
+    	if(!isValid(loc))
+    		throw new IllegalArgumentException("Location " + loc + " is not valid");
+    	
+    	Tile t = getTile(loc);
+    	grid[loc.getRow()][loc.getCol()] = null;
+    	return t;
     }
     
     public Element removeElement(Location loc)
@@ -147,7 +156,7 @@ public class GameGrid extends JComponent
                     + " is not valid");
         
         // Remove the object from the grid.
-        Element r = getElementAt(loc);
+        Element r = getElement(loc);
         occupantGrid[loc.getRow()][loc.getCol()] = null;
         return r;
     }
@@ -156,7 +165,7 @@ public class GameGrid extends JComponent
     {
         ArrayList<Element> neighbors = new ArrayList<Element>();
         for (Location neighborLoc : getOccupiedAdjacentLocations(loc))
-            neighbors.add(getElementAt(neighborLoc));
+            neighbors.add(getElement(neighborLoc));
         return neighbors;
     }
     
@@ -164,7 +173,7 @@ public class GameGrid extends JComponent
     	
     	ArrayList<Tile> nearTiles = new ArrayList<Tile>();
     	for(Location neighborLoc : getValidAdjacentLocations(loc))
-    		nearTiles.add(getTileAt(neighborLoc));
+    		nearTiles.add(getTile(neighborLoc));
     	return nearTiles;
     }
     
@@ -188,7 +197,7 @@ public class GameGrid extends JComponent
         ArrayList<Location> locs = new ArrayList<Location>();
         for (Location neighborLoc : getValidAdjacentLocations(loc))
         {
-            if (getElementAt(neighborLoc) == null)
+            if (getElement(neighborLoc) == null)
                 locs.add(neighborLoc);
         }
         return locs;
@@ -199,7 +208,7 @@ public class GameGrid extends JComponent
         ArrayList<Location> locs = new ArrayList<Location>();
         for (Location neighborLoc : getValidAdjacentLocations(loc))
         {
-            if (getElementAt(neighborLoc) != null)
+            if (getElement(neighborLoc) != null)
                 locs.add(neighborLoc);
         }
         return locs;
@@ -212,7 +221,7 @@ public class GameGrid extends JComponent
         {
             if (s.length() > 1)
                 s += ", ";
-            s += loc + "=" + getElementAt(loc);
+            s += loc + "=" + getElement(loc);
         }
         return s + "}";
     }
