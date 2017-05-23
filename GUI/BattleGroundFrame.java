@@ -53,13 +53,13 @@ import java.io.StringWriter;
  * implementation details that are not intended to be understood by AP CS
  * students.
  */
-public class BattleGroundFrame<T> extends JFrame
+public class BattleGroundFrame extends JFrame
 {
-    private GUIController<T> control;
+    private GUIController control;
     private GridPanel display;
     private JTextArea messageArea;
     private ArrayList<JMenuItem> menuItemsDisabledDuringRun;
-    private BattleGround<T> world;
+    private BattleGround world;
     private ResourceBundle resources;
     private DisplayMap displayMap;
 
@@ -132,7 +132,7 @@ public class BattleGroundFrame<T> extends JFrame
                    if (event.getKeyChar() == KeyEvent.CHAR_UNDEFINED && !event.isActionKey()) 
                        return false;
                    text = text.substring(0, n)  + text.substring(n + PRESSED.length());
-                   boolean consumed = getWorld().keyPressed(text, display.getCurrentLocation());
+                   boolean consumed = getBattlground().keyPressed(text, display.getCurrentLocation());
                    if (consumed) repaint();
                    return consumed;
                }
@@ -150,7 +150,7 @@ public class BattleGroundFrame<T> extends JFrame
                 return a.getName().compareTo(b.getName());
             }
         });
-        for (String name : world.getGridClasses())
+        for (String name : battleGround.getGridClasses())
             try
             {
                 gridClasses.add(Class.forName(name));
@@ -160,7 +160,7 @@ public class BattleGroundFrame<T> extends JFrame
                 ex.printStackTrace();
             }
 
-        Grid<T> gr = world.getGrid();
+        GameGrid<T> gr = battleground.getGrid();
         gridClasses.add(gr.getClass());
 
         makeNewGridMenu();
@@ -181,7 +181,7 @@ public class BattleGroundFrame<T> extends JFrame
 
     public void repaint()
     {
-        String message = getWorld().getMessage();
+        String message = getBattleground().getMessage();
         if (message == null)
             message = resources.getString("message.default");
         messageArea.setText(message);
@@ -194,9 +194,9 @@ public class BattleGroundFrame<T> extends JFrame
      * Gets the world that this frame displays
      * @return the world
      */
-    public World<T> getWorld()
+    public BattleGround<T> getBattleground()
     {
-        return world;
+        return battground;
     }
 
     /**
@@ -204,18 +204,18 @@ public class BattleGroundFrame<T> extends JFrame
      * the old world to the new.
      * @param newGrid the new grid
      */
-    public void setGrid(Grid<T> newGrid)
+    public void setGrid(GameGrid newGrid)
     {
-        Grid<T> oldGrid = world.getGrid();
+        GameGrid oldGrid = battleground.getGrid();
         Map<Location, T> occupants = new HashMap<Location, T>();
         for (Location loc : oldGrid.getOccupiedLocations())
-            occupants.put(loc, world.remove(loc));
+            occupants.put(loc, battleGround.remove(loc));
 
-        world.setGrid(newGrid);
+        battleground.setGrid(newGrid);
         for (Location loc : occupants.keySet())
         {
             if (newGrid.isValid(loc))
-                world.add(loc, occupants.get(loc));
+                battleground.add(loc, occupants.get(loc));
         }
 
         display.setGrid(newGrid);
