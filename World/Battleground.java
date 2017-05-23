@@ -41,7 +41,7 @@ public class Battleground {
 	}
 	
 	public void show(){
-		if(getMessage == null)
+		if(getMessage() == null)
 			setMessage(DEFAULT_MESSAGE);
 		if(frame == null)
 		{

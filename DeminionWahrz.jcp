@@ -36,10 +36,6 @@
 				<path>Element</path>
 			</folderitem>
 			<fileitem>
-				<path>World\Grid.java</path>
-				<folder>World</folder>
-			</fileitem>
-			<fileitem>
 				<path>World\Location.java</path>
 				<folder>World</folder>
 			</fileitem>

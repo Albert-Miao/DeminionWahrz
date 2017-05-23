@@ -8,6 +8,7 @@ import info.gridworld.grid.Location;
 public abstract class Unit extends Element
 {
 	 private int attack;
+	 private int damageDealt;
 	 private int movement;
 	 private int rangeMin;
 	 private int rangeMax;
