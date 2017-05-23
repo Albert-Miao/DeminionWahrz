@@ -27,7 +27,7 @@ import javax.swing.*;
  * students.
  */
 
-public class GUIController<T>
+public class GUIController
 {
     public static final int INDEFINITE = 0, FIXED_STEPS = 1, PROMPT_STEPS = 2;
 
@@ -39,12 +39,13 @@ public class GUIController<T>
     private JButton stepButton, runButton, stopButton;
     private JComponent controlPanel;
     private GridPanel display;
-    private WorldFrame<T> parentFrame;
+    private WorldFrame parentFrame;
     private int numStepsToRun, numStepsSoFar;
     private ResourceBundle resources;
     private DisplayMap displayMap;
     private boolean running;
     private Set<Class> occupantClasses;
+    private Set<Class> tileClasses
 
     /**
      * Creates a new controller tied to the specified display and gui
@@ -54,7 +55,7 @@ public class GUIController<T>
      * @param displayMap the map for occupant displays
      * @param res the resource bundle for message display
      */
-    public GUIController(WorldFrame<T> parent, GridPanel disp,
+    public GUIController(WorldFrame parent, GridPanel disp,
             DisplayMap displayMap, ResourceBundle res)
     {
         resources = res;
@@ -70,12 +71,20 @@ public class GUIController<T>
                 return a.getName().compareTo(b.getName());
             }
         });
+        
+        tileClasses = new TreeSet<Class>(new Comparator<Class>()
+        {
+            public int compare(Class a, Class b)
+            {
+                return a.getName().compareTo(b.getName());
+            }
+        });
 
-        BattleGround<T> battleGround = parentFrame.getWorld();
-        GameGrid<T> gr = world.getGrid();
+        Battleground battleground = parentFrame.getBattleground();
+        GameGrid gr = world.getGameGrid();
         for (Location loc : gr.getOccupiedLocations())
-            addOccupant(gr.get(loc));
-        for (String name : world.getOccupantClasses())
+            addOccupant(gr.getElement(loc));
+        for (String name : battleground.getOccupantClasses())
             try
             {
                 occupantClasses.add(Class.forName(name));
@@ -84,6 +93,17 @@ public class GUIController<T>
             {
                 ex.printStackTrace();
             }
+        
+        for (String name : battleground.getTileClasses){
+        	try
+        	{
+        		tileClasses.add(Class.forName(name));
+        	}
+        	catch (Exception ex)
+        	{
+        		ex.printStackTrace();
+        	}
+        }
 
         timer = new Timer(INITIAL_DELAY, new ActionListener()
         {
