@@ -1,7 +1,5 @@
 package GUI;
 
-import GUI.GameGrid;
-import GUI.Location;
 import World.Battleground;
 
 import java.awt.BorderLayout;
@@ -59,7 +57,7 @@ public class BattleGroundFrame extends JFrame
     private GridPanel display;
     private JTextArea messageArea;
     private ArrayList<JMenuItem> menuItemsDisabledDuringRun;
-    private BattleGround world;
+    private Battleground battleground;
     private ResourceBundle resources;
     private DisplayMap displayMap;
 
@@ -72,7 +70,7 @@ public class BattleGroundFrame extends JFrame
      * Constructs a WorldFrame that displays the occupants of a world
      * @param world the world to display
      */
-    public WorldFrame(BattleGround<T> battleground)
+    public BattleGroundFrame(Battleground battleground)
     {
         this.battleground = battleground;
         count++;

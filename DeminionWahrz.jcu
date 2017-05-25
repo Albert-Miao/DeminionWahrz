@@ -27,40 +27,46 @@
 			<active>false</active>
 		</docitem>
 		<docitem>
-			<path>Element\Element.java</path>
+			<path>World\GameGrid.java</path>
 			<source>true</source>
 			<index>1</index>
 			<active>false</active>
 		</docitem>
 		<docitem>
-			<path>Element\Unit.java</path>
+			<path>GUI\Tile.java</path>
 			<source>true</source>
 			<index>2</index>
 			<active>false</active>
 		</docitem>
 		<docitem>
-			<path>World\GameGrid.java</path>
+			<path>World\Location.java</path>
 			<source>true</source>
 			<index>3</index>
 			<active>false</active>
 		</docitem>
 		<docitem>
-			<path>GUI\Tile.java</path>
+			<path>Element\Spearman.java</path>
 			<source>true</source>
 			<index>4</index>
-			<active>true</active>
+			<active>false</active>
 		</docitem>
 		<docitem>
-			<path>World\Location.java</path>
+			<path>World\Battleground.java</path>
 			<source>true</source>
 			<index>5</index>
 			<active>false</active>
 		</docitem>
 		<docitem>
-			<path>Element\Spearman.java</path>
+			<path>GUI\GUIController.java</path>
 			<source>true</source>
 			<index>6</index>
 			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>GUI\BattleGroundFrame.java</path>
+			<source>true</source>
+			<index>7</index>
+			<active>true</active>
 		</docitem>
 	</open_files>
 </workspace_user>

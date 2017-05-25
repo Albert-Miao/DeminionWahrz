@@ -36,8 +36,20 @@
 				<path>Element</path>
 			</folderitem>
 			<fileitem>
+				<path>World\Battleground.java</path>
+				<folder>World</folder>
+			</fileitem>
+			<fileitem>
 				<path>World\Location.java</path>
 				<folder>World</folder>
+			</fileitem>
+			<fileitem>
+				<path>GUI\BattleGroundFrame.java</path>
+				<folder>GUI</folder>
+			</fileitem>
+			<fileitem>
+				<path>GUI\GUIController.java</path>
+				<folder>GUI</folder>
 			</fileitem>
 			<fileitem>
 				<path>GUI\Main.java</path>
