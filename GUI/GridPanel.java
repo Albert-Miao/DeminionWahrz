@@ -1,25 +1,8 @@
-/* 
- * AP(r) Computer Science GridWorld Case Study:
- * Copyright(c) 2002-2006 College Entrance Examination Board 
- * (http://www.collegeboard.com).
- *
- * This code is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation.
- *
- * This code is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * @author Julie Zelenski
- * @author Cay Horstmann
- */
 
-package info.gridworld.gui;
+package GUI;
 
-import info.gridworld.grid.Grid;
-import info.gridworld.grid.Location;
+import World.GameGrid;
+import World.Location;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -66,7 +49,7 @@ public class GridPanel extends JPanel implements Scrollable,
     private static final int DEFAULT_CELL_COUNT = 10;
     private static final int TIP_DELAY = 1000;
 
-    private Grid<?> grid;
+    private GameGrid grid;
     private int numRows, numCols, originRow, originCol;
     private int cellSize; // the size of each cell, EXCLUDING the gridlines
     private boolean toolTipsEnabled;
