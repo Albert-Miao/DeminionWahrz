@@ -51,20 +51,20 @@ public class Tile
    {
    		switch(this.terrainType){
    			case 1: break;//Normal
-   			case 2: if (u.getUnitType().equals("Soldier")) {u.setAttack += 2;}//Mountain
-   					else if (u.getUnitType().equals("Healer")) {u.setDefense =u.getDefense()-1;}
-   					else if (u.getUnitType().equals("Tank")) {u.setDefense =u.getDefense() + 1;}
-   					else if (u.getUnitType().equals("Aerial")) {u.setDefense = u.getDefense()-1;}
+   			case 2: if (u.getUnitType().equals("Soldier")) {u.setAttack(u.getAttack() + 2);}//Mountain
+   					else if (u.getUnitType().equals("Healer")) {u.setDefense(u.getDefense() - 1);}
+   					else if (u.getUnitType().equals("Tank")) {u.setDefense(u.getDefense() + 1);}
+   					else if (u.getUnitType().equals("Aerial")) {u.setDefense(u.getDefense() - 1);}
    			
-   			case 3: if (u.getUnitType().equals("Soldier")) {u.setAttack += 2;}//Forest
-   					else if (u.getUnitType().equals("Healer")) {u.setDefense =u.getDefense()-1;}
-   					else if (u.getUnitType().equals("Tank")) {u.setDefense = u.getDefense()+1;}
-   					else if (u.getUnitType().equals("Aerial")) {u.setDefense = u.getDefense() - 1;}
+   			case 3: if (u.getUnitType().equals("Soldier")) {u.setAttack(u.getAttack() + 2);}//Forest
+   					else if (u.getUnitType().equals("Healer")) {u.setDefense(u.getDefense() - 1);}
+   					else if (u.getUnitType().equals("Tank")) {u.setDefense(u.getDefense() + 1);}
+   					else if (u.getUnitType().equals("Aerial")) {u.setDefense(u.getDefense() - 1);}
    			
-   			case 4: if (u.getUnitType().equals("Soldier")) {u.setDefense = u.getAttack() - 1;}//Deep Sand
-   					else if (u.getUnitType().equals("Healer")) {u.setDefense = u.getAttack() + 2;}
-   					else if (u.getUnitType().equals("Tank")) {u.setDefense = u.getDefense() - 3;}
-   					else if (u.getUnitType().equals("Aerial")) {u.setAttack() = u.getAttack() + 2;}
+   			case 4: if (u.getUnitType().equals("Soldier")) {u.setDefense(u.getDefense() - 1);}//Deep Sand
+   					else if (u.getUnitType().equals("Healer")) {u.setDefense(u.getDefense() + 2);}
+   					else if (u.getUnitType().equals("Tank")) {u.setDefense(u.getDefense() - 3);}
+   					else if (u.getUnitType().equals("Aerial")) {u.setAttack(u.getAttack() + 2);}
    			default:
    				break;
    								

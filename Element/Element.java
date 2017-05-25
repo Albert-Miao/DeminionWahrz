@@ -14,7 +14,7 @@ public abstract class Element{
 	private String name;
 	private String imageName;
 	private ImageIcon img;
-	private enum Race {TOKKOKINO,AZURE,NEUTRAL};
+	public enum Race {TOKKOKINO,AZURE,NEUTRAL};
 	private Race race;
 	private String unitType;
 	
