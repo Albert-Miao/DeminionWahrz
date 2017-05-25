@@ -1,6 +1,9 @@
 package GUI;
 
 import World.Battleground;
+import World.GameGrid;
+import World.Location;
+import Element.Element;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -130,7 +133,7 @@ public class BattleGroundFrame extends JFrame
                    if (event.getKeyChar() == KeyEvent.CHAR_UNDEFINED && !event.isActionKey()) 
                        return false;
                    text = text.substring(0, n)  + text.substring(n + PRESSED.length());
-                   boolean consumed = getBattlground().keyPressed(text, display.getCurrentLocation());
+                   boolean consumed = getBattleground().keyPressed(text, display.getCurrentLocation());
                    if (consumed) repaint();
                    return consumed;
                }
@@ -148,7 +151,7 @@ public class BattleGroundFrame extends JFrame
                 return a.getName().compareTo(b.getName());
             }
         });
-        for (String name : battleGround.getGridClasses())
+        for (String name : battleground.getGridClasses())
             try
             {
                 gridClasses.add(Class.forName(name));
@@ -158,12 +161,12 @@ public class BattleGroundFrame extends JFrame
                 ex.printStackTrace();
             }
 
-        GameGrid<T> gr = battleground.getGrid();
+        GameGrid gr = battleground.getGameGrid();
         gridClasses.add(gr.getClass());
 
         makeNewGridMenu();
 
-        control = new GUIController<T>(this, display, displayMap, resources);
+        control = new GUIController(this, display, displayMap, resources);
         content.add(control.controlPanel(), BorderLayout.SOUTH);
 
         messageArea = new JTextArea(2, 35);
@@ -192,9 +195,9 @@ public class BattleGroundFrame extends JFrame
      * Gets the world that this frame displays
      * @return the world
      */
-    public BattleGround<T> getBattleground()
+    public Battleground getBattleground()
     {
-        return battground;
+        return battleground;
     }
 
     /**
@@ -204,12 +207,12 @@ public class BattleGroundFrame extends JFrame
      */
     public void setGrid(GameGrid newGrid)
     {
-        GameGrid oldGrid = battleground.getGrid();
-        Map<Location, T> occupants = new HashMap<Location, T>();
+        GameGrid oldGrid = battleground.getGameGrid();
+        Map<Location, Element> occupants = new HashMap<Location, Element>();
         for (Location loc : oldGrid.getOccupiedLocations())
-            occupants.put(loc, battleGround.remove(loc));
+            occupants.put(loc, battleground.removeElement(loc));
 
-        battleground.setGrid(newGrid);
+        battleground.setGameGrid(newGrid);
         for (Location loc : occupants.keySet())
         {
             if (newGrid.isValid(loc))

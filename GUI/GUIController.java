@@ -45,7 +45,7 @@ public class GUIController
     private DisplayMap displayMap;
     private boolean running;
     private Set<Class> occupantClasses;
-    private Set<Class> tileClasses
+    private Set<Class> tileClasses;
 
     /**
      * Creates a new controller tied to the specified display and gui

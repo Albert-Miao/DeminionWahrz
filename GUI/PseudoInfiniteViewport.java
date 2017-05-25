@@ -16,7 +16,7 @@
  * @author Cay Horstmann
  */
 
-package info.gridworld.gui;
+package GUI;
 
 import java.awt.Point;
 import java.awt.Dimension;
