@@ -40,11 +40,43 @@
 				<folder>World</folder>
 			</fileitem>
 			<fileitem>
+				<path>World\GameGrid.java</path>
+				<folder>World</folder>
+			</fileitem>
+			<fileitem>
 				<path>World\Location.java</path>
 				<folder>World</folder>
 			</fileitem>
 			<fileitem>
+				<path>GUI\AbstractDisplay.java</path>
+				<folder>GUI</folder>
+			</fileitem>
+			<fileitem>
 				<path>GUI\BattleGroundFrame.java</path>
+				<folder>GUI</folder>
+			</fileitem>
+			<fileitem>
+				<path>GUI\ColorEditor.java</path>
+				<folder>GUI</folder>
+			</fileitem>
+			<fileitem>
+				<path>GUI\DefaultDisplay.java</path>
+				<folder>GUI</folder>
+			</fileitem>
+			<fileitem>
+				<path>GUI\Display.java</path>
+				<folder>GUI</folder>
+			</fileitem>
+			<fileitem>
+				<path>GUI\DisplayMap.java</path>
+				<folder>GUI</folder>
+			</fileitem>
+			<fileitem>
+				<path>GUI\FormLayout.java</path>
+				<folder>GUI</folder>
+			</fileitem>
+			<fileitem>
+				<path>GUI\GridPanel.java</path>
 				<folder>GUI</folder>
 			</fileitem>
 			<fileitem>
@@ -52,12 +84,32 @@
 				<folder>GUI</folder>
 			</fileitem>
 			<fileitem>
+				<path>GUI\ImageDisplay.java</path>
+				<folder>GUI</folder>
+			</fileitem>
+			<fileitem>
+				<path>GUI\LocationEditor.java</path>
+				<folder>GUI</folder>
+			</fileitem>
+			<fileitem>
 				<path>GUI\Main.java</path>
+				<folder>GUI</folder>
+			</fileitem>
+			<fileitem>
+				<path>GUI\MenuMaker.java</path>
+				<folder>GUI</folder>
+			</fileitem>
+			<fileitem>
+				<path>GUI\PseudoInfiniteViewport.java</path>
 				<folder>GUI</folder>
 			</fileitem>
 			<fileitem>
 				<path>GUI\Tile.java</path>
 				<folder>GUI</folder>
+			</fileitem>
+			<fileitem>
+				<path>Element\Element.java</path>
+				<folder>Element</folder>
 			</fileitem>
 			<fileitem>
 				<path>Element\Spearman.java</path>

@@ -51,10 +51,10 @@
 			<active>false</active>
 		</docitem>
 		<docitem>
-			<path>World\Battleground.java</path>
+			<path>GUI\ColorEditor.java</path>
 			<source>true</source>
 			<index>5</index>
-			<active>false</active>
+			<active>true</active>
 		</docitem>
 		<docitem>
 			<path>GUI\GUIController.java</path>
@@ -66,7 +66,73 @@
 			<path>GUI\BattleGroundFrame.java</path>
 			<source>true</source>
 			<index>7</index>
-			<active>true</active>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>GUI\GridPanel.java</path>
+			<source>true</source>
+			<index>8</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>GUI\DisplayMap.java</path>
+			<source>true</source>
+			<index>9</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>GUI\Display.java</path>
+			<source>true</source>
+			<index>10</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>GUI\DefaultDisplay.java</path>
+			<source>true</source>
+			<index>11</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>GUI\AbstractDisplay.java</path>
+			<source>true</source>
+			<index>12</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>GUI\ImageDisplay.java</path>
+			<source>true</source>
+			<index>13</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>World\Battleground.java</path>
+			<source>true</source>
+			<index>14</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>GUI\FormLayout.java</path>
+			<source>true</source>
+			<index>15</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>GUI\MenuMaker.java</path>
+			<source>true</source>
+			<index>16</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>GUI\LocationEditor.java</path>
+			<source>true</source>
+			<index>17</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>GUI\PseudoInfiniteViewport.java</path>
+			<source>true</source>
+			<index>18</index>
+			<active>false</active>
 		</docitem>
 	</open_files>
 </workspace_user>

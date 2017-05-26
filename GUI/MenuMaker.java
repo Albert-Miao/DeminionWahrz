@@ -43,7 +43,7 @@ import javax.swing.event.DocumentListener;
  * implementation details that are not intended to be understood by AP CS
  * students.
  */
-public class MenuMaker<T>
+public class MenuMaker
 {
     /**
      * Constructs a menu maker for a given world.

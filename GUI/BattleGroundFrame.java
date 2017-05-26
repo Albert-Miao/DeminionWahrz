@@ -216,7 +216,7 @@ public class BattleGroundFrame extends JFrame
         for (Location loc : occupants.keySet())
         {
             if (newGrid.isValid(loc))
-                battleground.add(loc, occupants.get(loc));
+                battleground.addElement(occupants.get(loc), loc);
         }
 
         display.setGrid(newGrid);
@@ -441,7 +441,7 @@ public class BattleGroundFrame extends JFrame
     private void makeNewGridMenu()
     {
         newGridMenu.removeAll();
-        MenuMaker<T> maker = new MenuMaker<T>(this, resources, displayMap);
+        MenuMaker maker = new MenuMaker(this, resources, displayMap);
         maker.addConstructors(newGridMenu, gridClasses);
     }
 
@@ -575,7 +575,7 @@ public class BattleGroundFrame extends JFrame
                     JOptionPane.ERROR_MESSAGE, JOptionPane.YES_NO_OPTION, null,
                     new String[]
                         { copyOption, resources.getString("cancel") });
-            pane.createDialog(WorldFrame.this, e.toString()).setVisible(true);
+            pane.createDialog(BatteGroundFrame.this, e.toString()).setVisible(true);
             if (copyOption.equals(pane.getValue()))
             {
                 area.setSelectionStart(0);
