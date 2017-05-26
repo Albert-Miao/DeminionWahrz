@@ -245,7 +245,7 @@ public class GridPanel extends JPanel implements Scrollable,
      * default if grid is too large).
      * @param gr the grid to display
      */
-    public void setGrid(Grid<?> gr)
+    public void setGrid(GameGrid gr)
     {
         currentLocation = new Location(0, 0);
         JViewport vp = getEnclosingViewport(); // before changing, reset

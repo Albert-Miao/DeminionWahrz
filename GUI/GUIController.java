@@ -3,6 +3,9 @@ package GUI;
 //import info.gridworld.grid.*;
 //import info.gridworld.world.World;
 import World.Battleground;
+import World.GameGrid;
+import World.Location;
+import Element.Element;
 
 import java.awt.Dimension;
 import java.awt.Point;
@@ -39,7 +42,7 @@ public class GUIController
     private JButton stepButton, runButton, stopButton;
     private JComponent controlPanel;
     private GridPanel display;
-    private WorldFrame parentFrame;
+    private BattleGroundFrame parentFrame;
     private int numStepsToRun, numStepsSoFar;
     private ResourceBundle resources;
     private DisplayMap displayMap;
@@ -55,7 +58,7 @@ public class GUIController
      * @param displayMap the map for occupant displays
      * @param res the resource bundle for message display
      */
-    public GUIController(WorldFrame parent, GridPanel disp,
+    public GUIController(BattleGroundFrame parent, GridPanel disp,
             DisplayMap displayMap, ResourceBundle res)
     {
         resources = res;
@@ -81,7 +84,7 @@ public class GUIController
         });
 
         Battleground battleground = parentFrame.getBattleground();
-        GameGrid gr = world.getGameGrid();
+        GameGrid gr = battleground.getGameGrid();
         for (Location loc : gr.getOccupiedLocations())
             addOccupant(gr.getElement(loc));
         for (String name : battleground.getOccupantClasses())
@@ -94,7 +97,7 @@ public class GUIController
                 ex.printStackTrace();
             }
         
-        for (String name : battleground.getTileClasses){
+        for (String name : battleground.getTileClasses()){
         	try
         	{
         		tileClasses.add(Class.forName(name));
@@ -117,7 +120,7 @@ public class GUIController
         {
             public void mousePressed(MouseEvent evt)
             {
-                Grid<T> gr = parentFrame.getWorld().getGrid();
+                GameGrid gr = parentFrame.getBattleground().getGameGrid();
                 Location loc = display.locationForPoint(evt.getPoint());
                 if (loc != null && gr.isValid(loc) && !isRunning())
                 {
@@ -134,17 +137,17 @@ public class GUIController
      */
     public void step()
     {
-        parentFrame.getWorld().step();
+        parentFrame.getBattleground().step();
         parentFrame.repaint();
         if (++numStepsSoFar == numStepsToRun)
             stop();
-        Grid<T> gr = parentFrame.getWorld().getGrid();
+        GameGrid gr = parentFrame.getBattleground().getGameGrid();
 
         for (Location loc : gr.getOccupiedLocations())
             addOccupant(gr.get(loc));
     }
 
-    private void addOccupant(T occupant)
+    private void addOccupant(Element occupant)
     {
         Class cl = occupant.getClass();
         do
@@ -287,7 +290,7 @@ public class GUIController
      */
     private void locationClicked()
     {
-        World<T> world = parentFrame.getWorld();
+        Battleground battleground = parentFrame.getBattleground();
         Location loc = display.getCurrentLocation();
         if (loc != null && !world.locationClicked(loc))
             editLocation();

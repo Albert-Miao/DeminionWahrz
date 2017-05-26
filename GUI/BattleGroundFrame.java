@@ -584,7 +584,7 @@ public class BattleGroundFrame extends JFrame
                     JOptionPane.ERROR_MESSAGE, JOptionPane.YES_NO_OPTION, null,
                     new String[]
                         { copyOption, resources.getString("cancel") });
-            pane.createDialog(BatteGroundFrame.this, e.toString()).setVisible(true);
+            pane.createDialog(BattleGroundFrame.this, e.toString()).setVisible(true);
             if (copyOption.equals(pane.getValue()))
             {
                 area.setSelectionStart(0);

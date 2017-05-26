@@ -3,6 +3,7 @@ package World;
 
 import World.GameGrid;
 import World.Location;
+import GUI.BattleGroundFrame;
 
 import Element.Element;
 import GUI.Tile;
@@ -183,6 +184,10 @@ public class Battleground {
     	if (frame != null){
     		frame.repaint();
     	}
+    }
+    public void step()
+    {
+        repaint();
     }
     
     public String toString(){
