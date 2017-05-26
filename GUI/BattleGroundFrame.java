@@ -209,14 +209,23 @@ public class BattleGroundFrame extends JFrame
     {
         GameGrid oldGrid = battleground.getGameGrid();
         Map<Location, Element> occupants = new HashMap<Location, Element>();
+        Map<Location, Tile> tiles = new HashMap<Location, Tile>();
         for (Location loc : oldGrid.getOccupiedLocations())
             occupants.put(loc, battleground.removeElement(loc));
+        for (Location loc : oldGrid.getTiledLocations())
+        	tiles.put(loc, battleground.removeTile(loc));
 
         battleground.setGameGrid(newGrid);
         for (Location loc : occupants.keySet())
         {
             if (newGrid.isValid(loc))
                 battleground.addElement(occupants.get(loc), loc);
+        }
+        
+        for (Location loc : tiles.keySet())
+        {
+            if (newGrid.isValid(loc))
+                battleground.addTile(tiles.get(loc), loc);
         }
 
         display.setGrid(newGrid);

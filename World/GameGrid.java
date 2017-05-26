@@ -116,6 +116,25 @@ public class GameGrid extends JComponent
         return theLocations;
     }
     
+    public ArrayList<Location> getTiledLocations()
+    {
+        ArrayList<Location> theLocations = new ArrayList<Location>();
+
+        // Look at all grid locations.
+        for (int r = 0; r < getNumRows(); r++)
+        {
+            for (int c = 0; c < getNumCols(); c++)
+            {
+                // If there's an object at this location, put it in the array.
+                Location loc = new Location(r, c);
+                if (getTile(loc) != null)
+                    theLocations.add(loc);
+            }
+        }
+
+        return theLocations;
+    }
+    
     public Tile putTile(Tile t, Location loc){
     	if (!isValid(loc))
             throw new IllegalArgumentException("Location " + loc
