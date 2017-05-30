@@ -2,7 +2,7 @@ package Grid;
 
 import javax.swing.JComponent;
 import Element.Tile;
-java.awt.*;
+import java.awt.*;
 
 public class GameGrid extends JComponent
 {
@@ -14,19 +14,27 @@ public class GameGrid extends JComponent
 	{
 		numRow = r;
 		numCol = c;
-		grid = new int[numRow][numCol];	
+		grid = new int[numRow][numCol];
+		for(int i = 0;i< numRow;i++)
+		{
+			for(int k = 0;k <= numCol;k++)
+			{
+				
+			}
+		}	
 	}
 	public int getRow()
 	{
 		return numRow;
 	}
-	public int getRow()
+	public int getCol()
 	{
 		return numCol;
 	}
 	public void paintComponent(Graphics g)
 	{
 		Graphics2D g2d = (Graphics2D) g;
+			
 	}
 	
 }
