@@ -52,10 +52,6 @@
 				<folder>GUI</folder>
 			</fileitem>
 			<fileitem>
-				<path>GUI\BattleGroundFrame.java</path>
-				<folder>GUI</folder>
-			</fileitem>
-			<fileitem>
 				<path>GUI\ColorEditor.java</path>
 				<folder>GUI</folder>
 			</fileitem>
@@ -92,10 +88,6 @@
 				<folder>GUI</folder>
 			</fileitem>
 			<fileitem>
-				<path>GUI\Main.java</path>
-				<folder>GUI</folder>
-			</fileitem>
-			<fileitem>
 				<path>GUI\MenuMaker.java</path>
 				<folder>GUI</folder>
 			</fileitem>
@@ -104,15 +96,15 @@
 				<folder>GUI</folder>
 			</fileitem>
 			<fileitem>
-				<path>GUI\Tile.java</path>
-				<folder>GUI</folder>
-			</fileitem>
-			<fileitem>
 				<path>Element\Element.java</path>
 				<folder>Element</folder>
 			</fileitem>
 			<fileitem>
 				<path>Element\Spearman.java</path>
+				<folder>Element</folder>
+			</fileitem>
+			<fileitem>
+				<path>Element\Tile.java</path>
 				<folder>Element</folder>
 			</fileitem>
 			<fileitem>

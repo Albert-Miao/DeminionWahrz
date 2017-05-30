@@ -27,15 +27,75 @@
 			<active>false</active>
 		</docitem>
 		<docitem>
-			<path>GUI\BattleGroundFrame.java</path>
+			<path>GUI\ColorEditor.java</path>
 			<source>true</source>
 			<index>1</index>
 			<active>false</active>
 		</docitem>
 		<docitem>
-			<path>GUI\MenuMaker.java</path>
+			<path>GUI\DefaultDisplay.java</path>
 			<source>true</source>
 			<index>2</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>GUI\Display.java</path>
+			<source>true</source>
+			<index>3</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>GUI\DisplayMap.java</path>
+			<source>true</source>
+			<index>4</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>GUI\FormLayout.java</path>
+			<source>true</source>
+			<index>5</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>GUI\GUIController.java</path>
+			<source>true</source>
+			<index>6</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>GUI\GridPanel.java</path>
+			<source>true</source>
+			<index>7</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>GUI\ImageDisplay.java</path>
+			<source>true</source>
+			<index>8</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>GUI\LocationEditor.java</path>
+			<source>true</source>
+			<index>9</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>GUI\MenuMaker.java</path>
+			<source>true</source>
+			<index>10</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>GUI\PseudoInfiniteViewport.java</path>
+			<source>true</source>
+			<index>11</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>Element\Tile.java</path>
+			<source>true</source>
+			<index>12</index>
 			<active>true</active>
 		</docitem>
 	</open_files>
