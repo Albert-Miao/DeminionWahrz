@@ -44,9 +44,16 @@ public class Tile
 	public int getYCoord() {
 		return y;
 	}
+	public int getImage(){
+		return image;
+	}
+	public void highlightTiles(){
+		
+	}
 	public void paintComponent(Graphics g)
 	{
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.drawRect(xPos,yPos,width,length);
+		g2d.drawImage(image,xPos,yPos,width,length,null);
 	}
 }
