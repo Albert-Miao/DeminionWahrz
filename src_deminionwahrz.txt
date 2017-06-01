@@ -1,6 +1,0 @@
-C:\Users\AP4\Documents\DeminionWahrz\Element\Element.java
-C:\Users\AP4\Documents\DeminionWahrz\Element\Spearman.java
-C:\Users\AP4\Documents\DeminionWahrz\Element\Tile.java
-C:\Users\AP4\Documents\DeminionWahrz\Element\Unit.java
-C:\Users\AP4\Documents\DeminionWahrz\Grid\GameGrid.java
-C:\Users\AP4\Documents\DeminionWahrz\Managers\Manager.java

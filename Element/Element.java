@@ -1,7 +1,7 @@
 package Element;
 
-import World.GameGrid;
-import World.Location;
+import Grid.GameGrid;
+//import World.Location;
 
 import java.awt.Graphics;
 import javax.swing.ImageIcon;

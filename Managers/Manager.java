@@ -13,7 +13,7 @@ public class Manager extends JFrame implements ActionListener{
 	JButton endTurnButton;
 	
 	GridLayout infoLayout = new GridLayout(0, 2);//map, infodisplay
-	GridLayout controlLayout = new GridLayout(0, 4)//deselect, move, attack, endturn buttons
+	GridLayout controlLayout = new GridLayout(0, 4);//deselect, move, attack, endturn buttons
 	public Manager(String name) {
 		super(name);
 		setResizable(false);

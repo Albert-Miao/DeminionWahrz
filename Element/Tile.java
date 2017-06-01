@@ -2,6 +2,9 @@ package Element;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.image.ImageIO;
+import java.imageio.ImageIO;
+
 
 public class Tile
 {
@@ -12,19 +15,34 @@ public class Tile
 	private int x;
 	private int y;
 	private int terrainType;
+	private String imageName;
+	private Image image;
 	
-	public Tile(int xP, int yP, int l, int w,int tt)
+	public Tile(int xP, int yP, int l, int w,int tt, String imagename)
 	{
 		xPos = xP;
 		yPos = yP;
 		length = l;
 		width = w;
-		terrainType = tt;		
+		terrainType = tt;
+		imageName = imagename;
+		try {
+			image = ImageIO.read(getClass().getResourceAsStream(imageName));
+		} 
+		catch(IOException ex) {
+			e.printStackTrace();
+		}		
 	}
 	public void setCoords(int xCoord,int yCoord)
 	{
 		x = xCoord;
 		y = yCoord;
+	}
+	public int getXCoord() {
+		return x;
+	}
+	public int getYCoord() {
+		return y;
 	}
 	public void paintComponent(Graphics g)
 	{
