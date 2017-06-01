@@ -8,7 +8,8 @@ import javax.swing.ImageIcon;
 
 public abstract class Element{
 	
-	private Location loc;
+	private int xPos;
+	private int yPos;
 	private GameGrid gr;
 	private int health;
 	private String name;
@@ -20,7 +21,8 @@ public abstract class Element{
 	
 	public Element(String n, String imgName, int h, Race r, String ut){
 		gr = null;
-		loc = null;
+		xPos = null;
+		yPos = null;
 		health = h;
 		name = n;
 		imageName = imgName;
@@ -37,8 +39,12 @@ public abstract class Element{
 		return gr;
 	}
 	
-	public Location getLocation(){
-		return loc;
+	public int getXPos(){
+		return xPos;
+	}
+	
+	public int getYPos(){
+		return yPos;
 	}
 	
 	public int getHealth(){
@@ -53,36 +59,37 @@ public abstract class Element{
 		return unitType;
 	}
 	
-	public void moveTo(Location newLoc){
+	public void moveTo(int newX, int newY){
 		if (gr == null)
             throw new IllegalStateException("This actor is not in a grid.");
-        if (gr.getElement(loc) != this)
+        if (gr.getElement(newX, newY) != this)
             throw new IllegalStateException(
                     "The grid contains a different actor at location "
-                            + loc + ".");
-        if (!gr.isValid(newLoc))
+                            + newX +", " + newY + ".");
+        if (!gr.isValid(newX, newY))
             throw new IllegalArgumentException("Location " + newLoc
                     + " is not valid.");
 
-        if (newLoc.equals(loc))
+        if (newX == xPos && newY == yPos)
             return;
-        gr.removeElement(loc);
-        Element other = gr.getElement(newLoc);
+        gr.removeElement(xPos, yPos);
+        Element other = gr.getElement(xPos, yPos);
         if(other != null)
         	other.removeSelfFromGrid();
-        loc = newLoc;
-        gr.putElement(this, loc);
+        xPos = newX;
+        yPos = newY;
+        gr.putElement(this, newX, newY);
 	}
 	
-	public void putSelfInGrid(GameGrid g, Location l){
+	public void putSelfInGrid(GameGrid g, int x, int y){
 		if(gr != null)
 			throw new IllegalStateException(
                     "This actor is already contained in a grid.");
-        Element element = g.getElement(l);
+        Element element = g.getElement(x, y);
         if(element != null){
         	element.removeSelfFromGrid();
         }
-        g.putElement(this, l);
+        g.putElement(this, x, y);
         gr = g;
         loc = l;
 	}
@@ -94,8 +101,8 @@ public abstract class Element{
         if (gr.getElement(loc) != this)
             throw new IllegalStateException(
                     "The grid contains a different actor at location "
-                            + loc + ".");
-        gr.removeElement(loc);
+                            + x + ", " + y + ".");
+        gr.removeElement(x, y);
         gr = null;
         loc = null;
 	}

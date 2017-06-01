@@ -18,7 +18,6 @@ public abstract class Unit extends Element
 	 private int rangeMin;
 	 private int rangeMax;
 	 private int defense;
-	 private Tile currentTile;
 	  
 	 public Unit(String n, String imgName, int h, Race r, String ut, int att, int def, int rngeMin, int rngeMax, int mvement)
 	 {
@@ -48,14 +47,14 @@ public abstract class Unit extends Element
 	 	defense = def;
 	 }
 	 
-	 public ArrayList<Location> getMovable(){
-	 	ArrayList<Location> moveableLocs = new ArrayList<Location>();
-	 	Set<Location> set = new HashSet<Location>();
-	 	moveableLocs.add(getLocation());
+	 public ArrayList<Tile> getMovable(){
+	 	ArrayList<Tile> moveableTiles = new ArrayList<Tile>();
+	 	Set<Tile> set = new HashSet<Tile>();
+	 	moveableTiles.add(getGameGrid().getTile(getXPos(), getYPos()));
 	 	for(int i = 0; i < movement; i++){
-	 		ArrayList<Location> toAddLocs = new ArrayList<Location>();
-	 		for(Location loc : moveableLocs){
-	 			toAddLocs.addAll(getGameGrid().getEmptyAdjacentLocations(loc));
+	 		ArrayList<Tile> toAddTiles = new ArrayList<Tile>();
+	 		for(Tile tile : moveableTiles){
+	 			toAddTiles.addAll(getGameGrid().getEmptyAdjacentLocations(getXPos(), getYPos()));
 	 		}
 	 		set.addAll(toAddLocs);
 	 		moveableLocs.addAll(set);
