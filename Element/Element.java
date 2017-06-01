@@ -1,7 +1,6 @@
 package Element;
 
 import Grid.GameGrid;
-//import World.Location;
 
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
@@ -21,8 +20,8 @@ public abstract class Element{
 	
 	public Element(String n, String imgName, int h, Race r, String ut){
 		gr = null;
-		xPos = null;
-		yPos = null;
+		xPos = -1;
+		yPos = -1;
 		health = h;
 		name = n;
 		imageName = imgName;
@@ -67,7 +66,7 @@ public abstract class Element{
                     "The grid contains a different actor at location "
                             + newX +", " + newY + ".");
         if (!gr.isValid(newX, newY))
-            throw new IllegalArgumentException("Location " + newLoc
+            throw new IllegalArgumentException("Location " + newX + ", " + newY
                     + " is not valid.");
 
         if (newX == xPos && newY == yPos)
@@ -91,20 +90,22 @@ public abstract class Element{
         }
         g.putElement(this, x, y);
         gr = g;
-        loc = l;
+        xPos = x;
+        yPos = y;
 	}
 	
 	public void removeSelfFromGrid(){
 		if (gr == null)
             throw new IllegalStateException(
                     "This actor is not contained in a grid.");
-        if (gr.getElement(loc) != this)
+        if (gr.getElement(xPos, yPos) != this)
             throw new IllegalStateException(
                     "The grid contains a different actor at location "
-                            + x + ", " + y + ".");
-        gr.removeElement(x, y);
+                            + xPos + ", " + yPos + ".");
+        gr.removeElement(xPos, yPos);
         gr = null;
-        loc = null;
+        xPos = -1;
+        yPos = -1;
 	}
 	
 	public void setHealth(int h){
@@ -113,6 +114,6 @@ public abstract class Element{
 	
 	public String toString()
     {
-        return getClass().getName() + "[location=" + loc + "health=" + health + "]";
+        return getClass().getName() + "[location=" + xPos + " " + yPos + " health=" + health + "]";
     }
 }

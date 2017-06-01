@@ -58,6 +58,7 @@ public abstract class Unit extends Element
 	 		}
 	 		set.addAll(toAddLocs);
 	 		moveableLocs.addAll(set);
+	 		set.clear();
 	 	}
 	 	
 	 	return moveableLocs;
