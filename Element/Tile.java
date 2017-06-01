@@ -2,8 +2,11 @@ package Element;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.image.ImageIO;
-import java.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import java.awt.Image;
+import java.io.IOException;
+
 
 
 public class Tile
@@ -17,6 +20,7 @@ public class Tile
 	private int terrainType;
 	private String imageName;
 	private Image image;
+	private Element element;
 	
 	public Tile(int xP, int yP, int l, int w,int tt, String imagename)
 	{
@@ -44,11 +48,26 @@ public class Tile
 	public int getYCoord() {
 		return y;
 	}
+	public int getXPos() {
+		return xPos;
+	}
+	public int getYPos() {
+		return yPos()
+	}
+	public void setElement(Element e) {
+		element = e;
+	}
 	public int getImage(){
 		return image;
 	}
-	public void highlightTiles(){
-		
+	public void highlightTiles() {
+	    BufferedImage newImg = new BufferedImage(image.getWidth(), loadImg.getHeight(),
+	        BufferedImage.TRANSLUCENT);
+	    Graphics2D graphics = img.createGraphics(); 
+	    Color newColor = Color.GREEN;
+	    graphics.setXORMode(newColor);
+	    graphics.drawImage(loadImg, null, 0, 0);
+	    graphics.dispose();
 	}
 	public void paintComponent(Graphics g)
 	{
