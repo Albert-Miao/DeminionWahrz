@@ -40,9 +40,11 @@ public class Manager extends JFrame implements ActionListener{
 	
 	public void addComponentsToPane(final Container pane) {
 		
+		initButtons();
+		
 		JPanel info = new JPanel();
 		info.setLayout(infoLayout);
-		JPanel controls = new JPanel();
+		final JPanel controls = new JPanel();
 		controls.setLayout(controlLayout);
 		
 		JButton b = new JButton ("Fake Button");
