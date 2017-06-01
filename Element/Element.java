@@ -9,6 +9,8 @@ public abstract class Element{
 	
 	private int xPos;
 	private int yPos;
+	private int absX;
+	private int absY;
 	private GameGrid gr;
 	private int health;
 	private String name;
@@ -22,6 +24,8 @@ public abstract class Element{
 		gr = null;
 		xPos = -1;
 		yPos = -1;
+		absX = -1;
+		absY = -1;
 		health = h;
 		name = n;
 		imageName = imgName;
@@ -44,6 +48,14 @@ public abstract class Element{
 	
 	public int getYPos(){
 		return yPos;
+	}
+	
+	public void setAbsX(int x){
+		absX = x;
+	}
+	
+	public void setAbsY(int y){
+		absY = y;
 	}
 	
 	public int getHealth(){
