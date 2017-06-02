@@ -52,7 +52,7 @@ public class Tile
 		return xPos;
 	}
 	public int getYPos() {
-		return yPos()
+		return yPos();
 	}
 	public void setElement(Element e) {
 		element = e;

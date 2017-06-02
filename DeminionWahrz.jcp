@@ -35,6 +35,9 @@
 			<folderitem>
 				<path>Managers</path>
 			</folderitem>
+			<folderitem>
+				<path>res</path>
+			</folderitem>
 			<fileitem>
 				<path>Element\Element.java</path>
 				<folder>Element</folder>
