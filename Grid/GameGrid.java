@@ -2,9 +2,8 @@ package Grid;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
-import Element.Element;
 import Element.Tile;
-import java.util.ArrayList;
+import Element.Element;
 import java.awt.*;
 
 
@@ -103,23 +102,4 @@ public class GameGrid extends JPanel
 		}
 		
 	}
-	public ArrayList<Tile> getAdjacentTiles(int r, int c) {
-		ArrayList adjacentMovableTiles = new ArrayList<Tile>();
-		Tile[] adjacentTiles = { //Tiles in a 3x3 grid around the tile at (r,c)
-				grid[r+1][c],
-				grid[r-1][c],
-				grid[r][c+1],
-				grid[r][c-1],
-				grid[r+1][c+1],
-				grid[r-1][c+1],
-				grid[r+1][c-1],
-				grid[r-1][c-1]
-	};
-	for(Tile t : adjacentTiles) {
-		if( t.getElement() == null) {
-			adjacentMovableTiles.add(t);
-		}
-	}
-	return adjacentMovableTiles;
- }
 }

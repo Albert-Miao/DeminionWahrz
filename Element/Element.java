@@ -122,6 +122,13 @@ public abstract class Element{
 	
 	public void setHealth(int h){
 		health = h;
+		if(health <= 0){
+			die();
+		}
+	}
+	
+	public void die(){
+		removeSelfFromGrid();
 	}
 	
 	public String toString()

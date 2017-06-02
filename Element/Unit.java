@@ -22,6 +22,7 @@ public abstract class Unit extends Element
 	 {
 	 	super(n, imgName, h, r, ut);
 		attack = att;
+		damageDealt = attack;
 		rangeMin = rngeMin;
 		rangeMax = rngeMax;
 		movement = mvement;
@@ -37,6 +38,10 @@ public abstract class Unit extends Element
 	 	return defense;
 	 }
 	 
+	 public int getDamageDealt(){
+		 return damageDealt;
+	 }
+	 
 	 public void setAttack(int att)
 	 {
 	 	attack = att;
@@ -46,11 +51,14 @@ public abstract class Unit extends Element
 	 	defense = def;
 	 }
 	 
+	 public void setDamageDealt(int dmg){
+		damageDealt = dmg;
+	 }
+	 
 	 public Set<Tile> getMovable(){
 		 Set<Tile> moveableTiles = new HashSet<Tile>();
 		 Set<Tile> tilesToAdd = new HashSet<Tile>();
-		 //moveableTiles.add(getGameGrid().getTile(getXPos(), getYPos()));
-		 //need a getTile method from GameGrid
+		 moveableTiles.add(getGameGrid().getTile(getXPos(), getYPos()));
 		 for(int i = 0; i < movement; i++){
 			 for(Tile tile : moveableTiles){
 				 //toAddTiles.addAll(getGameGrid().getEmptyAdjacentTiles(tile));
@@ -59,7 +67,7 @@ public abstract class Unit extends Element
 			 moveableTiles.addAll(tilesToAdd);
 			 tilesToAdd.clear();
 		 }
-		 //moveableTiles.remove(getGameGrid().getTile(getXPos(), getYPos()));
+		 moveableTiles.remove(getGameGrid().getTile(getXPos(), getYPos()));
 		 return moveableTiles;
 	 }
 	 
@@ -67,9 +75,8 @@ public abstract class Unit extends Element
 		 Set<Tile> inRangeTiles = new HashSet<Tile>();
 		 Set<Tile> tilesToExclude = new HashSet<Tile>();
 		 Set<Tile> tilesToAdd = new HashSet<Tile>();
-		 //inRangeTiles.add(getGameGrid().getTile(getXPos(), getYPos()));
-		 //tilesToExclude.add(getGameGrid().getTile(getXPos(), getYPos()));
-		 //need a getTile method from gameGrid
+		 inRangeTiles.add(getGameGrid().getTile(getXPos(), getYPos()));
+		 tilesToExclude.add(getGameGrid().getTile(getXPos(), getYPos()));
 		 for(int i = 0; i < rangeMax; i++){
 			 for(Tile tile: inRangeTiles){
 				 //toAddTiles.addAll(getGameGrid().getEmptyAdjacentTiles(tile));
@@ -78,7 +85,7 @@ public abstract class Unit extends Element
 			 inRangeTiles.addAll(tilesToAdd);
 			 tilesToAdd.clear();
 		 }
-		 for(int i = 0; i < rangeMin; i++){
+		 for(int i = 0; i < rangeMin - 1; i++){
 			 for(Tile tile : tilesToExclude){
 				 //toAddTiles.addAll(getGameGrid().getEmptyAdjacentTiles(tile));
 				 //need getEmptyAdjacentTiles method from GameGrid
@@ -92,4 +99,5 @@ public abstract class Unit extends Element
 	 
 	 public abstract void move(int row, int col);
 	 public abstract void attack(Element e);
+	 public abstract void attack(Unit u);
 }

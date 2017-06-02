@@ -34,7 +34,7 @@ public class Tile
 			image = ImageIO.read(getClass().getResourceAsStream(imageName));
 		} 
 		catch(IOException ex) {
-			ex.printStackTrace();
+			e.printStackTrace();
 		}		
 	}
 	public void setCoords(int xCoord,int yCoord)
@@ -52,15 +52,12 @@ public class Tile
 		return xPos;
 	}
 	public int getYPos() {
-		return yPos;
+		return yPos()
 	}
 	public void setElement(Element e) {
 		element = e;
 	}
-	public Element getElement() {
-		return element;
-	}
-	public Image getImage(){
+	public int getImage(){
 		return image;
 	}
 	public void highlightTiles() {
