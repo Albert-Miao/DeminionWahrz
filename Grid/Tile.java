@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import Element.Element;
 
 public class Tile {
 	
@@ -16,6 +17,7 @@ public class Tile {
 	private String imageName;
 	private int row;
 	private int col;
+	private Element element;
 	
 	public Tile(int x, int y, int w, int h, String imagename) {
 		xPos = x;
@@ -45,7 +47,16 @@ public class Tile {
 	public int getCol() {
 		return col;
 	}
-	public void appearMovable() { //WIP
-		
+	public void setElement(Element e) {
+		element = e;
+	}
+	public Element getElement() {
+		return element;
+	}
+	public int getXPos() {
+		return xPos;
+	}
+	public int getYPos() {
+		return yPos;
 	}
 }
