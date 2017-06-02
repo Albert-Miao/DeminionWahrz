@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.awt.Image;
 import java.io.IOException;
-
+import java.awt.Color;
 
 
 public class Tile
@@ -34,7 +34,7 @@ public class Tile
 			image = ImageIO.read(getClass().getResourceAsStream(imageName));
 		} 
 		catch(IOException ex) {
-			e.printStackTrace();
+			ex.printStackTrace();
 		}		
 	}
 	public void setCoords(int xCoord,int yCoord)
@@ -52,7 +52,7 @@ public class Tile
 		return xPos;
 	}
 	public int getYPos() {
-		return yPos();
+		return yPos;
 	}
 	public void setElement(Element e) {
 		element = e;
@@ -60,16 +60,15 @@ public class Tile
 	public Element getElement() {
 		return element;
 	}
-	public int getImage(){
+	public Image getImage(){
 		return image;
 	}
 	public void highlightTiles() {
-	    BufferedImage newImg = new BufferedImage(image.getWidth(), loadImg.getHeight(),
-	        BufferedImage.TRANSLUCENT);
-	    Graphics2D graphics = img.createGraphics(); 
+	    BufferedImage newImg = new BufferedImage(length, width, BufferedImage.TRANSLUCENT);
+	    Graphics2D graphics = newImg.createGraphics(); 
 	    Color newColor = Color.GREEN;
 	    graphics.setXORMode(newColor);
-	    graphics.drawImage(loadImg, null, 0, 0);
+	    graphics.drawImage(image, xPos, yPos,width,length,null);
 	    graphics.dispose();
 	}
 	public void paintComponent(Graphics g)

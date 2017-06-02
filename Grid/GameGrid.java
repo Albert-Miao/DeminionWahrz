@@ -4,6 +4,7 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import Element.Tile;
 import Element.Element;
+import java.util.ArrayList;
 import java.awt.*;
 
 
@@ -91,12 +92,21 @@ public class GameGrid extends JPanel
 	public void removeElement(int r, int c) {
 		grid[r][c].setElement(null);
 	}
+	public ArrayList<Tile> getAdjacent(int r, int c) {
+		ArrayList<Tile> adjacent = new ArrayList<Tile>();
+		
+		if (isValid(r+1,c)) { adjacent.add(grid[r+1][c]); }
+		if (isValid(r-1,c)) { adjacent.add(grid[r-1][c]); }
+		if (isValid(r,c+1)) { adjacent.add(grid[r][c+1]); }
+		if (isValid(r,c-1)) { adjacent.add(grid[r][c-1]); }
+		
+		return adjacent;
+	}
 	public boolean isValid(int r, int c) {
 		Tile tile = grid[r][c];
-		if(tile.getElement() != null) {
+		if(tile == null || r < 0 || c < 0) {
 			return false;
 		}
-		
 		else {
 			return true;
 		}
