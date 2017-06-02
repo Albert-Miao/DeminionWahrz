@@ -1,5 +1,7 @@
 package Managers;
 
+import Grid.GameGrid;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -54,8 +56,11 @@ public class Manager extends JFrame implements ActionListener{
 		controls.add(attackButton);
 		controls.add(endTurnButton);
 		
+		JPanel battleGround = new GameGrid(10, 10);
+		
 		pane.add(controls, BorderLayout.SOUTH);
 		pane.add(new JSeparator(), BorderLayout.CENTER);
+		pane.add(battleGround, BorderLayout.NORTH);
 	}
 	
 	public void actionPerformed(ActionEvent e){
