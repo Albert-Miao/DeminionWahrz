@@ -7,8 +7,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import World.Location;
-import GUI.Tile;
+import Element.Tile;
 
 public abstract class Unit extends Element
 {
@@ -47,25 +46,50 @@ public abstract class Unit extends Element
 	 	defense = def;
 	 }
 	 
-	 public ArrayList<Tile> getMovable(){
-	 	ArrayList<Tile> moveableTiles = new ArrayList<Tile>();
-	 	Set<Tile> set = new HashSet<Tile>();
-	 	moveableTiles.add(getGameGrid().getTile(getXPos(), getYPos()));
-	 	for(int i = 0; i < movement; i++){
-	 		ArrayList<Tile> toAddTiles = new ArrayList<Tile>();
-	 		for(Tile tile : moveableTiles){
-	 			toAddTiles.addAll(getGameGrid().getEmptyAdjacentLocations(getXPos(), getYPos()));
-	 		}
-	 		set.addAll(toAddLocs);
-	 		moveableLocs.addAll(set);
-	 		set.clear();
-	 	}
-	 	
-	 	return moveableLocs;
+	 public Set<Tile> getMovable(){
+		 Set<Tile> moveableTiles = new HashSet<Tile>();
+		 Set<Tile> tilesToAdd = new HashSet<Tile>();
+		 //moveableTiles.add(getGameGrid().getTile(getXPos(), getYPos()));
+		 //need a getTile method from GameGrid
+		 for(int i = 0; i < movement; i++){
+			 for(Tile tile : moveableTiles){
+				 //toAddTiles.addAll(getGameGrid().getEmptyAdjacentTiles(tile));
+				 //need a getEmptyAdjacentLocations method for gameGrid
+			 }
+			 moveableTiles.addAll(tilesToAdd);
+			 tilesToAdd.clear();
+		 }
+		 //moveableTiles.remove(getGameGrid().getTile(getXPos(), getYPos()));
+		 return moveableTiles;
 	 }
-	 public Location[] getRange(){
-	 	//to be implemented
+	 
+	 public Set<Tile> getRange(){
+		 Set<Tile> inRangeTiles = new HashSet<Tile>();
+		 Set<Tile> tilesToExclude = new HashSet<Tile>();
+		 Set<Tile> tilesToAdd = new HashSet<Tile>();
+		 //inRangeTiles.add(getGameGrid().getTile(getXPos(), getYPos()));
+		 //tilesToExclude.add(getGameGrid().getTile(getXPos(), getYPos()));
+		 //need a getTile method from gameGrid
+		 for(int i = 0; i < rangeMax; i++){
+			 for(Tile tile: inRangeTiles){
+				 //toAddTiles.addAll(getGameGrid().getEmptyAdjacentTiles(tile));
+				 //need a getEmptyAdjacentLocations method for gameGrid
+			 }
+			 inRangeTiles.addAll(tilesToAdd);
+			 tilesToAdd.clear();
+		 }
+		 for(int i = 0; i < rangeMin; i++){
+			 for(Tile tile : tilesToExclude){
+				 //toAddTiles.addAll(getGameGrid().getEmptyAdjacentTiles(tile));
+				 //need getEmptyAdjacentTiles method from GameGrid
+			 }
+			 tilesToExclude.addAll(tilesToAdd);
+			 tilesToAdd.clear();
+		 }
+		 inRangeTiles.removeAll(tilesToExclude);
+		 return inRangeTiles;
 	 }
-	 public abstract void move();
-	 public abstract void attack();
+	 
+	 public abstract void move(int row, int col);
+	 public abstract void attack(Element e);
 }

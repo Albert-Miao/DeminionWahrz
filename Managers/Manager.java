@@ -41,8 +41,6 @@ public class Manager extends JFrame implements ActionListener{
 		
 		initButtons();
 		
-		JPanel info = new JPanel();
-		info.setLayout(infoLayout);
 		final JPanel controls = new JPanel();
 		controls.setLayout(controlLayout);
 		
