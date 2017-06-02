@@ -18,7 +18,7 @@ public class Spearman extends Unit //
 	}
 	public void move(int row, int col)
 	{
-		newTile = grid[row][col];
+		Tile newTile = grid[row][col];
 		tileLoc = newTile.getLocation();
 		newTile.checkTileStatus(this);
 		moveTo(tileLoc);
