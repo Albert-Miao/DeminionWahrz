@@ -57,6 +57,9 @@ public class Tile
 	public void setElement(Element e) {
 		element = e;
 	}
+	public Element getElement() {
+		return element;
+	}
 	public int getImage(){
 		return image;
 	}
