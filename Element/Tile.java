@@ -1,13 +1,15 @@
 package Element;
 
 import Grid.GameGrid;
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
-import java.awt.Image;
+import java.io.File;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import java.awt.Image;
 import java.awt.Color;
 
 
@@ -20,24 +22,25 @@ public class Tile
 	private int x;
 	private int y;
 	private int terrainType;
-	private String imageName;
-	private Image image;
+	private String imagePath;
+	private BufferedImage image;
 	private Element element;
 	
-	public Tile(int xP, int yP, int l, int w,int tt, String imagename)
+	public Tile(int xP, int yP, int l, int w,int tt, String imagepath)
 	{
 		xPos = xP;
 		yPos = yP;
 		length = l;
 		width = w;
 		terrainType = tt;
-		imageName = imagename;
+		imagePath = imagepath;
+		File imgFile = new File(imagePath);
 		try {
-			image = ImageIO.read(getClass().getResourceAsStream(imageName));
-		} 
-		catch(IOException ex) {
-			ex.printStackTrace();
-		}		
+		image = ImageIO.read(imgFile);
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}
 	}
 	public void setCoords(int xCoord,int yCoord)
 	{
@@ -65,13 +68,22 @@ public class Tile
 	public Image getImage(){
 		return image;
 	}
-	public void highlightTiles() {
-	    BufferedImage newImg = new BufferedImage(length, width, BufferedImage.TRANSLUCENT);
-	    Graphics2D graphics = newImg.createGraphics(); 
-	    Color newColor = Color.GREEN;
-	    graphics.setXORMode(newColor);
-	    graphics.drawImage(image, xPos, yPos,width,length,null);
-	    graphics.dispose();
+	public void highlightTiles() { //Tint tiles green
+		
+		for(int i = 0; i <= image.getWidth(null); i++) {
+			for(int k = 0; k <= image.getWidth(null); k++) {
+				Color c = new Color(image.getRGB(i,k));
+				
+				int r = c.getRed();
+				int b = c.getGreen();
+				int g = c.getBlue();
+				
+				Color greenTint = new Color(r - 50, g, b - 50);
+				
+				image.setRGB(i, k, greenTint.getRGB());
+			}
+		}
+		
 	}
 	public void paintComponent(Graphics g)
 	{
