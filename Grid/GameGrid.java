@@ -26,7 +26,7 @@ public class GameGrid extends JPanel
 		{
 			for(int k = 0;k <= numCol;k++)
 			{
-				Tile t = new Tile(x,y,50,50,1,"NewPiskel");
+				Tile t = new Tile(x,y,50,50,1,"Managers/res/NewPiskel.png");
 				grid[i][k] = t;
 				t.setCoords(i,k);
 			}

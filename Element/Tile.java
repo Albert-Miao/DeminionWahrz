@@ -25,23 +25,24 @@ public class Tile
 	private int x;
 	private int y;
 	private int terrainType;
-	private String imageName;
+	private String imagePath;
 	private BufferedImage image;
 	private Element element;
 	
-	public Tile(int xP, int yP, int l, int w,int tt, String imagename)
+	public Tile(int xP, int yP, int l, int w,int tt, String imagepath)
 	{
 		xPos = xP;
 		yPos = yP;
 		length = l;
 		width = w;
 		terrainType = tt;
-		imageName = imagename;
+		imagePath = imagepath;
 		try {
-			image = ImageIO.read(new File(imageName + ".png"));
+			image = ImageIO.read(new File(imagePath));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println(imagePath);
 		}
 	}
 	public void setCoords(int xCoord,int yCoord)
@@ -89,7 +90,6 @@ public class Tile
 		paintComponent(imageGraphics);
 	}
 	public void unHighlightTiles() {
-		
 		
 		for(int i = 0; i <= image.getWidth(null); i++) {
 			for(int k = 0; k <= image.getWidth(null); k++) {
