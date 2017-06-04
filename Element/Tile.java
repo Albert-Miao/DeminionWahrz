@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -36,12 +37,10 @@ public class Tile
 		width = w;
 		terrainType = tt;
 		imageName = imagename;
-		//File imgFile = new File(image);
-		//image = ImageIO.read(new File(imagePath));
 		try {
-			image = ImageIO.read(this.getClass().getResource("/res/" + imagename + ".png"));
-		} 
-		catch(IOException e) {
+			image = ImageIO.read(new File(imageName + ".png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
