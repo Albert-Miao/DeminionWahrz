@@ -6,6 +6,8 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -22,22 +24,23 @@ public class Tile
 	private int x;
 	private int y;
 	private int terrainType;
-	private String imagePath;
+	private String imageName;
 	private BufferedImage image;
 	private Element element;
 	
-	public Tile(int xP, int yP, int l, int w,int tt, String imagepath)
+	public Tile(int xP, int yP, int l, int w,int tt, String imagename)
 	{
 		xPos = xP;
 		yPos = yP;
 		length = l;
 		width = w;
 		terrainType = tt;
-		imagePath = imagepath;
-		File imgFile = new File(imagePath);
+		imageName = imagename;
+		//File imgFile = new File(image);
+		//image = ImageIO.read(new File(imagePath));
 		try {
-		image = ImageIO.read(imgFile);
-		}
+			image = ImageIO.read(this.getClass().getResource("/res/" + imagename + ".png"));
+		} 
 		catch(IOException e) {
 			e.printStackTrace();
 		}
@@ -83,7 +86,27 @@ public class Tile
 				image.setRGB(i, k, greenTint.getRGB());
 			}
 		}
+		Graphics imageGraphics = image.getGraphics();
+		paintComponent(imageGraphics);
+	}
+	public void unHighlightTiles() {
 		
+		
+		for(int i = 0; i <= image.getWidth(null); i++) {
+			for(int k = 0; k <= image.getWidth(null); k++) {
+				Color c = new Color(image.getRGB(i,k));
+				
+				int r = c.getRed();
+				int b = c.getGreen();
+				int g = c.getBlue();
+				
+				Color originalColor = new Color(r + 50, g, b + 50);
+				
+				image.setRGB(i, k, originalColor.getRGB());
+			}
+			Graphics imageGraphics = image.getGraphics();
+			paintComponent(imageGraphics);
+		}
 	}
 	public void paintComponent(Graphics g)
 	{

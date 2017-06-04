@@ -6,6 +6,7 @@ import Element.Tile;
 import Element.Element;
 import java.util.ArrayList;
 import java.awt.*;
+import java.net.URL;
 
 
 public class GameGrid extends JPanel
@@ -25,7 +26,7 @@ public class GameGrid extends JPanel
 		{
 			for(int k = 0;k <= numCol;k++)
 			{
-				Tile t = new Tile(x,y,50,50,1,"TestIcon.png");
+				Tile t = new Tile(x,y,50,50,1,"TestIcon");
 				grid[i][k] = t;
 				t.setCoords(i,k);
 			}
@@ -111,5 +112,14 @@ public class GameGrid extends JPanel
 			return true;
 		}
 		
+	}
+	public void paintComponent(Graphics g) {
+		
+		//Graphics2D g2d = (Graphics2D) g;
+		for(int row = 0; row < numRow; row++) {
+			for(int col = 0; col < numCol; col++) {
+				grid[row][col].paintComponent(g);
+			}
+		}
 	}
 }
