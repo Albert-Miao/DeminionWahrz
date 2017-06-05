@@ -23,6 +23,7 @@ public class Tile
 	private int terrainType;
 	private String imagePath;
 	private BufferedImage image;
+	private BufferedImage displayedImage;
 	private Element element;
 	
 	public Tile(int xP, int yP, int l, int w,int tt, String imagepath)
@@ -37,6 +38,7 @@ public class Tile
 		imagePath = imagepath;
 		try {
 			image = ImageIO.read(new File(imagePath));
+			//displayedImage = ImageIO.read(new File(imagePath));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -74,15 +76,15 @@ public class Tile
 	}
 	public void highlightTile() { //Tint tiles green
 		
-		for(int i = 0; i <= image.getWidth(null); i++) {
-			for(int k = 0; k <= image.getWidth(null); k++) {
+		for(int i = 0; i < image.getWidth(null); i++) {
+			for(int k = 0; k < image.getWidth(null); k++) {
 				Color c = new Color(image.getRGB(i,k));
 				
 				int r = c.getRed();
 				int b = c.getGreen();
 				int g = c.getBlue();
 				
-				Color greenTint = new Color(r - 50, g, b - 50);
+				Color greenTint = new Color((int)(r * 0.25), g, (int)(b * 0.25));
 				
 				image.setRGB(i, k, greenTint.getRGB());
 			}
@@ -90,23 +92,17 @@ public class Tile
 		Graphics imageGraphics = image.getGraphics();
 		paintComponent(imageGraphics);
 	}
-	public void unHighlightTile() {
-		
-		for(int i = 0; i <= image.getWidth(null); i++) {
-			for(int k = 0; k <= image.getWidth(null); k++) {
-				Color c = new Color(image.getRGB(i,k));
-				
-				int r = c.getRed();
-				int b = c.getGreen();
-				int g = c.getBlue();
-				
-				Color originalColor = new Color(r + 50, g, b + 50);
-				
-				image.setRGB(i, k, originalColor.getRGB());
-			}
-			Graphics imageGraphics = image.getGraphics();
-			paintComponent(imageGraphics);
+	public void unHighlightTile() {	
+		try {
+			image = ImageIO.read(new File(imagePath));
+			//displayedImage = ImageIO.read(new File(imagePath));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println(imagePath);
 		}
+		Graphics imageGraphics = image.getGraphics();
+		paintComponent(imageGraphics);
 	}
 	public void paintComponent(Graphics g)
 	{
