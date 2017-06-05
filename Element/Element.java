@@ -3,6 +3,8 @@ package Element;
 import Grid.GameGrid;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+
 import javax.swing.ImageIcon;
 
 public abstract class Element{
@@ -19,6 +21,8 @@ public abstract class Element{
 	public enum Race {TOKKOKINO,AZURE,NEUTRAL};
 	private Race race;
 	private String unitType;
+	private int length;
+	private int width;
 	
 	public Element(String n, String imgName, int h, Race r, String ut){
 		gr = null;
@@ -30,6 +34,8 @@ public abstract class Element{
 		name = n;
 		imageName = imgName;
 		img = new ImageIcon(imgName);
+		length = 50;
+		width = 50;
 		race = r;
 		unitType = ut;
 	}
@@ -48,6 +54,14 @@ public abstract class Element{
 	
 	public int getYPos(){
 		return yPos;
+	}
+	
+	public int getAbsX(){
+		return absX;
+	}
+	
+	public int getAbsY(){
+		return absY;
 	}
 	
 	public void setAbsX(int x){
@@ -70,6 +84,10 @@ public abstract class Element{
 		return unitType;
 	}
 	
+	public Race getRace(){
+		return race;
+	}
+	
 	public void moveTo(int newX, int newY){
 		if (gr == null)
             throw new IllegalStateException("This actor is not in a grid.");
@@ -89,6 +107,8 @@ public abstract class Element{
         	other.removeSelfFromGrid();
         xPos = newX;
         yPos = newY;
+        absX = xPos * length;
+        absY = yPos * width;
         gr.putElement(this, newX, newY);
 	}
 	

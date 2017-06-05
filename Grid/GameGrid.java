@@ -4,16 +4,30 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import Element.Tile;
 import Element.Element;
+import Element.Element.Race;
+
 import java.util.ArrayList;
 import java.awt.*;
 import java.net.URL;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.event.MouseEvent;
 
 public class GameGrid extends JPanel
 {
 	private int numRow;
 	private int numCol;
 	private Tile[][] grid;
+	
+	private Tile hovered;
+	
+	public enum GameMode {DEFAULT, SELECTED, MOVE, ATTACK};
+	
+	private Element selected;
+	
+	private GameMode mode = GameMode.DEFAULT;
+	private Race turn = Race.AZURE;
 	
 	public GameGrid(int r, int c)
 	{
@@ -22,6 +36,8 @@ public class GameGrid extends JPanel
 		numCol = c;
 		grid = new Tile[numRow][numCol];
 		
+		selected = null;
+		
 		for(int i = 0;i< numRow;i++)
 		{
 			for(int k = 0;k < numCol;k++)
@@ -29,7 +45,49 @@ public class GameGrid extends JPanel
 				Tile t = new Tile(i,k,50,50,1,"DeminionWahrz/Managers/res/NewPiskel.png");
 				grid[i][k] = t;
 			}
-		}	
+		}
+		
+		addMouseMotionListener(new MouseMotionAdapter(){
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				//hovered.unHighlightTile();
+				int x = (int) (e.getX() / 50);
+				int y = (int) (e.getY() / 50);
+				if(x < numRow && y < numCol){
+					hovered = getTile(x, y);
+					System.out.println(x + " " + y);
+					//hovered.highlightTile();
+				}
+			}	
+		});
+		
+		addMouseListener(new MouseAdapter(){
+			@Override
+			public void mousePressed(MouseEvent e){
+				if(hovered.getElement() != null){
+					if(hovered.getElement().getRace() == turn){
+						mode = GameMode.SELECTED;
+						selected = hovered.getElement();
+					}
+				}
+			}
+		});
+	}
+	
+	public GameMode getMode(){
+		return mode;
+	}
+	
+	public void setMode(GameMode mo){
+		mode = mo;
+	}
+	
+	public Element getSelected(){
+		return selected;
+	}
+	
+	public void setSelected(Element e){
+		selected = e;
 	}
 	
 	public int getRow()

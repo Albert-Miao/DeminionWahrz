@@ -1,10 +1,12 @@
 package Managers;
 
 import Grid.GameGrid;
+import Grid.GameGrid.GameMode;
 import Element.Tile;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.beans.*;
 
 public class Manager extends JFrame implements ActionListener{
 	final static int maxGap = 20;
@@ -13,6 +15,8 @@ public class Manager extends JFrame implements ActionListener{
 	JButton moveButton;
 	JButton attackButton;
 	JButton endTurnButton;
+	
+	private GameGrid battleGround;
 	
 	GridLayout controlLayout = new GridLayout(0, 4);//deselect, move, attack, endturn buttons
 	public Manager(String name) {
@@ -23,15 +27,19 @@ public class Manager extends JFrame implements ActionListener{
 	public void initButtons(){
 		deselectButton = new JButton("Deselect");
 		deselectButton.setActionCommand("deselect");
+		deselectButton.setEnabled(false);
 		
 		moveButton = new JButton("Move");
 		moveButton.setActionCommand("move");
+		moveButton.setEnabled(false);
 		
 		attackButton = new JButton("Attack");
 		attackButton.setActionCommand("attack");
+		attackButton.setEnabled(false);
 		
 		endTurnButton = new JButton("End Turn");
 		endTurnButton.setActionCommand("end turn");
+		endTurnButton.setEnabled(false);
 		
 		deselectButton.addActionListener(this);
 		moveButton.addActionListener(this);
@@ -56,7 +64,7 @@ public class Manager extends JFrame implements ActionListener{
 		controls.add(attackButton);
 		controls.add(endTurnButton);
 	
-		GameGrid battleGround = new GameGrid(10, 10);
+		battleGround = new GameGrid(10, 10);
 		battleGround.setPreferredSize(new Dimension(1000, 500));
 		
 		battleGround.getTile(0,0).highlightTile();
@@ -65,6 +73,18 @@ public class Manager extends JFrame implements ActionListener{
 		pane.add(new JSeparator(), BorderLayout.CENTER);
 		pane.add(battleGround, BorderLayout.NORTH);
 		
+		pane.addPropertyChangeListener(new PropertyChangeListener(){
+			public void propertyChange(PropertyChangeEvent e){
+				String prop = e.getPropertyName();
+				
+				if((e.getSource() == battleGround) && battleGround.getMode() == GameMode.SELECTED){
+					deselectButton.setEnabled(true);
+					moveButton.setEnabled(true);
+					attackButton.setEnabled(true);
+					endTurnButton.setEnabled(true);
+				}
+			}
+		});
 	}
 	
 	public void actionPerformed(ActionEvent e){
@@ -72,6 +92,12 @@ public class Manager extends JFrame implements ActionListener{
 		switch(e.getActionCommand()) {
 		
 			case "deselect":
+				battleGround.setMode(GameMode.DEFAULT);
+				battleGround.setSelected(null);
+				deselectButton.setEnabled(false);
+				moveButton.setEnabled(false);
+				attackButton.setEnabled(false);
+				endTurnButton.setEnabled(false);
 				break;
 			
 			case "move":
