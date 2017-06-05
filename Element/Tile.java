@@ -5,13 +5,9 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import java.awt.Image;
 import java.awt.Color;
 
@@ -76,7 +72,7 @@ public class Tile
 	public Image getImage(){
 		return image;
 	}
-	public void highlightTiles() { //Tint tiles green
+	public void highlightTile() { //Tint tiles green
 		
 		for(int i = 0; i <= image.getWidth(null); i++) {
 			for(int k = 0; k <= image.getWidth(null); k++) {
@@ -94,7 +90,7 @@ public class Tile
 		Graphics imageGraphics = image.getGraphics();
 		paintComponent(imageGraphics);
 	}
-	public void unHighlightTiles() {
+	public void unHighlightTile() {
 		
 		for(int i = 0; i <= image.getWidth(null); i++) {
 			for(int k = 0; k <= image.getWidth(null); k++) {

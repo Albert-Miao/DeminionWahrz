@@ -17,6 +17,7 @@ public class GameGrid extends JPanel
 	
 	public GameGrid(int r, int c)
 	{
+		super();
 		numRow = r;
 		numCol = c;
 		grid = new Tile[numRow][numCol];
@@ -25,7 +26,7 @@ public class GameGrid extends JPanel
 		{
 			for(int k = 0;k < numCol;k++)
 			{
-				Tile t = new Tile(i,k,50,50,1,"src/Managers/res/NewPiskel.png");
+				Tile t = new Tile(i,k,50,50,1,"DeminionWahrz/Managers/res/NewPiskel.png");
 				grid[i][k] = t;
 			}
 		}	
