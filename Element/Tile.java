@@ -38,11 +38,10 @@ public class Tile
 		imagePath = imagepath;
 		try {
 			image = ImageIO.read(new File(imagePath));
-			//displayedImage = ImageIO.read(new File(imagePath));
+			displayedImage = ImageIO.read(new File(imagePath));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println(imagePath);
 		}
 	}
 	public void setCoords(int xCoord,int yCoord)
@@ -76,38 +75,37 @@ public class Tile
 	}
 	public void highlightTile() { //Tint tiles green
 		
-		for(int i = 0; i < image.getWidth(null); i++) {
-			for(int k = 0; k < image.getWidth(null); k++) {
-				Color c = new Color(image.getRGB(i,k));
-				
-				int r = c.getRed();
-				int b = c.getGreen();
-				int g = c.getBlue();
-				
-				Color greenTint = new Color((int)(r * 0.25), g, (int)(b * 0.25));
-				
-				image.setRGB(i, k, greenTint.getRGB());
-			}
+//		for(int i = 0; i < image.getWidth(null); i++) {
+//			for(int k = 0; k < image.getWidth(null); k++) {
+//				Color c = new Color(image.getRGB(i,k));
+//				
+//				int r = c.getRed();
+//				int g = c.getGreen();
+//				int b = c.getBlue();
+//				int a = c.getAlpha();
+//				
+//				//Color greenTint = new Color((int)(r * 0.25), g, (int)(b * 0.25));
+//				Color greenTint = new Color(r, 255, b, a);
+//				
+//				image.setRGB(i, k, greenTint.getRGB());
+//			}
+//		}
+		try {
+			displayedImage = ImageIO.read(new File("Managers/res/highlightMask.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		Graphics imageGraphics = image.getGraphics();
 		paintComponent(imageGraphics);
 	}
-	public void unHighlightTile() {	
-		try {
-			image = ImageIO.read(new File(imagePath));
-			//displayedImage = ImageIO.read(new File(imagePath));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.println(imagePath);
-		}
-		Graphics imageGraphics = image.getGraphics();
-		paintComponent(imageGraphics);
+	public void unHighlightTile() {
+		
 	}
 	public void paintComponent(Graphics g)
 	{
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.drawRect(xPos,yPos,width,length);
-		g2d.drawImage(image,xPos,yPos,width,length,null);
+		g2d.drawImage(displayedImage,xPos,yPos,width,length,null);
 	}
 }

@@ -68,6 +68,7 @@ public class Manager extends JFrame implements ActionListener{
 		battleGround.setPreferredSize(new Dimension(1000, 500));
 		
 		battleGround.getTile(4,3).highlightTile();
+		battleGround.getTile(4,3).unHighlightTile();
 		
 		pane.add(controls, BorderLayout.SOUTH);
 		pane.add(new JSeparator(), BorderLayout.CENTER);
