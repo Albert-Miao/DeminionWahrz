@@ -31,8 +31,10 @@ public class Tile
 	
 	public Tile(int xP, int yP, int l, int w,int tt, String imagepath)
 	{
-		xPos = xP;
-		yPos = yP;
+		x = xP;
+		y = yP;
+		xPos = l * x;
+		yPos = w * y;
 		length = l;
 		width = w;
 		terrainType = tt;
@@ -49,6 +51,9 @@ public class Tile
 	{
 		x = xCoord;
 		y = yCoord;
+		
+		xPos = x * length;
+		yPos = y * width;
 	}
 	public int getXCoord() {
 		return x;
