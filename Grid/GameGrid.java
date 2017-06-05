@@ -10,10 +10,6 @@ import java.util.ArrayList;
 import java.awt.*;
 import java.net.URL;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseMotionAdapter;
-import java.awt.event.MouseEvent;
-
 public class GameGrid extends JPanel
 {
 	private int numRow;
@@ -46,32 +42,6 @@ public class GameGrid extends JPanel
 				grid[i][k] = t;
 			}
 		}
-		
-		addMouseMotionListener(new MouseMotionAdapter(){
-			@Override
-			public void mouseMoved(MouseEvent e) {
-				//hovered.unHighlightTile();
-				int x = (int) (e.getX() / 50);
-				int y = (int) (e.getY() / 50);
-				if(x < numRow && y < numCol){
-					hovered = getTile(x, y);
-					System.out.println(x + " " + y);
-					//hovered.highlightTile();
-				}
-			}	
-		});
-		
-		addMouseListener(new MouseAdapter(){
-			@Override
-			public void mousePressed(MouseEvent e){
-				if(hovered.getElement() != null){
-					if(hovered.getElement().getRace() == turn){
-						mode = GameMode.SELECTED;
-						selected = hovered.getElement();
-					}
-				}
-			}
-		});
 	}
 	
 	public GameMode getMode(){
