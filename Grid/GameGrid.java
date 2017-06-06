@@ -117,7 +117,7 @@ public class GameGrid extends JPanel
 	public void removeElement(int r, int c) {
 		grid[r][c].setElement(null);
 	}
-	public ArrayList<Tile> getAdjacent(int r, int c) {
+	public ArrayList<Tile> getAdjacentTiles(int r, int c) {
 		ArrayList<Tile> adjacent = new ArrayList<Tile>();
 		
 		if (isValid(r+1,c)) { adjacent.add(grid[r+1][c]); }

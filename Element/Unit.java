@@ -61,7 +61,9 @@ public abstract class Unit extends Element
 		 moveableTiles.add(getGameGrid().getTile(getXPos(), getYPos()));
 		 for(int i = 0; i < movement; i++){
 			 for(Tile tile : moveableTiles){
-				 //toAddTiles.addAll(getGameGrid().getEmptyAdjacentTiles(tile));
+				 int r = tile.getXCoord();
+				 int c = tile.getYCoord(); 
+				 tilesToAdd.addAll(getGameGrid().getAdjacentTiles(r,c));
 				 //need a getEmptyAdjacentLocations method for gameGrid
 			 }
 			 moveableTiles.addAll(tilesToAdd);

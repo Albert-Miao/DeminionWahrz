@@ -8,6 +8,9 @@ import Element.Element;
 import Element.Pieces.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.Set;
+
 import javax.swing.*;
 
 public class Manager extends JFrame implements ActionListener, MouseListener{
@@ -19,6 +22,9 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 	JButton endTurnButton;
 	
 	private Tile lighted;
+	private Tile tileToMoveTo;
+	private boolean moving;
+	
 	private GameGrid battleGround;
 	
 	GridLayout controlLayout = new GridLayout(0, 4);//deselect, move, attack, endturn buttons
@@ -103,6 +109,25 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 				break;
 			
 			case "move":
+				battleGround.setMode(GameMode.MOVE);
+				moveButton.setEnabled(false);
+				attackButton.setEnabled(false);
+				endTurnButton.setEnabled(false);
+				
+				Element selected = battleGround.getSelected();
+				Unit selectedUnit = (Unit) selected;
+				Set<Tile> moveableTiles = selectedUnit.getMovable();
+				for(Tile t : moveableTiles) {
+					t.highlightTile();
+				}
+				battleGround.addMouseListener(this);
+//				for(Tile t : moveableTiles) {
+//					t.unHighlightTile();
+//				}
+				selectedUnit.move(tileToMoveTo.getXCoord(), tileToMoveTo.getYCoord());
+				battleGround.setSelected(null);
+				battleGround.repaint();
+				battleGround.setMode(GameMode.DEFAULT);
 				break;
 			
 			case "attack":
@@ -128,8 +153,11 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 				moveButton.setEnabled(true);
 				attackButton.setEnabled(true);
 				endTurnButton.setEnabled(true);
-			}else{
+			} else{
 				battleGround.getTile(battleGround.getSelected().getXPos(), battleGround.getSelected().getYPos()).unHighlightTile();
+			}
+			if(battleGround.getMode().equals(GameMode.MOVE)) {
+				tileToMoveTo = battleGround.getTile(battleGround.getSelected().getXPos(), battleGround.getSelected().getYPos());
 			}
 			battleGround.setSelected(battleGround.getElement(x, y));
 			battleGround.getTile(battleGround.getSelected().getXPos(), battleGround.getSelected().getYPos()).highlightTile();
