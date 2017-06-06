@@ -83,6 +83,8 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 	
 	public void setupElements(){
 		Unit firstE = new Spearman(5, 5, battleGround);
+		Unit secondE = new Spearman(3, 7, battleGround);
+		Unit thirdE = new Spearman(9, 9, battleGround);
 	}
 	
 	public void actionPerformed(ActionEvent e){
