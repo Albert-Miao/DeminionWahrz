@@ -4,6 +4,7 @@ import Grid.GameGrid;
 import Grid.GameGrid.GameMode;
 import Element.Tile;
 import Element.Unit;
+import Element.Element;
 import Element.Pieces.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -18,7 +19,6 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 	JButton endTurnButton;
 	
 	private Tile lighted;
-	
 	private GameGrid battleGround;
 	
 	GridLayout controlLayout = new GridLayout(0, 4);//deselect, move, attack, endturn buttons
@@ -93,13 +93,12 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 		
 			case "deselect":
 				battleGround.setMode(GameMode.DEFAULT);
-				battleGround.setSelected(null);
 				deselectButton.setEnabled(false);
 				moveButton.setEnabled(false);
 				attackButton.setEnabled(false);
 				endTurnButton.setEnabled(false);
-				lighted.unHighlightTile();
-				lighted = null;
+				battleGround.getTile(battleGround.getSelected().getXPos(), battleGround.getSelected().getYPos()).unHighlightTile();
+				battleGround.setSelected(null);
 				battleGround.repaint();
 				break;
 			
@@ -122,18 +121,18 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 		int x = (int)(e.getX() / 50);
 		int y = (int)(e.getY() / 50);
 		System.out.println(x + " " + y);
-		if(x < battleGround.getRow() || y < battleGround.getCol()){
-			if(lighted == null){
+		if((x < battleGround.getRow() || y < battleGround.getCol()) && battleGround.hasElement(x, y)){
+			if(battleGround.getSelected() == null){
 				battleGround.setMode(GameMode.SELECTED);
 				deselectButton.setEnabled(true);
 				moveButton.setEnabled(true);
 				attackButton.setEnabled(true);
 				endTurnButton.setEnabled(true);
 			}else{
-				lighted.unHighlightTile();
+				battleGround.getTile(battleGround.getSelected().getXPos(), battleGround.getSelected().getYPos()).unHighlightTile();
 			}
-			lighted = battleGround.getTile(x, y);
-			lighted.highlightTile();
+			battleGround.setSelected(battleGround.getElement(x, y));
+			battleGround.getTile(battleGround.getSelected().getXPos(), battleGround.getSelected().getYPos()).highlightTile();
 			battleGround.repaint();
 		}
 	}

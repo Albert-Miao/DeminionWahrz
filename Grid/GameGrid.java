@@ -106,6 +106,10 @@ public class GameGrid extends JPanel
 		return grid[r][c].getElement();
 	}
 	
+	public boolean hasElement(int r, int c) {
+		return grid[r][c].hasElement();
+	}
+	
 	public void removeTile(int r, int c) {
 		grid[r][c] = null;
 	}
