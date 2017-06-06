@@ -79,7 +79,7 @@ public class Tile
 		for(int i = 0; i < image.getWidth(null); i++) {
 			for(int k = 0; k < image.getWidth(null); k++) {
 				Color c = new Color(image.getRGB(i,k));
-				System.out.println(c.toString());
+				//System.out.println(c.toString());
 				int r = c.getRed();
 				int g = c.getGreen();
 				int b = c.getBlue();
@@ -101,7 +101,7 @@ public class Tile
 			e.printStackTrace();
 			System.out.println(imagePath);
 		}
-		Graphics imageGraphics = image.getGraphics();
+		Graphics imageGraphics = displayedImage.getGraphics();
 		paintComponent(imageGraphics);
 	}
 	public void paintComponent(Graphics g)
@@ -109,5 +109,9 @@ public class Tile
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.drawImage(displayedImage,xPos,yPos,width,length,null);
 		g2d.drawRect(xPos,yPos,width,length);
+	}
+	
+	public String toString(){
+		return x + " " + y;
 	}
 }

@@ -6,15 +6,16 @@ import Element.Tile;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.beans.*;
 
-public class Manager extends JFrame implements ActionListener{
+public class Manager extends JFrame implements ActionListener, MouseListener{
 	final static int maxGap = 20;
 	
 	JButton deselectButton;
 	JButton moveButton;
 	JButton attackButton;
 	JButton endTurnButton;
+	
+	private Tile lighted;
 	
 	private GameGrid battleGround;
 	
@@ -65,10 +66,11 @@ public class Manager extends JFrame implements ActionListener{
 		controls.add(endTurnButton);
 	
 		battleGround = new GameGrid(10, 10);
-		battleGround.setPreferredSize(new Dimension(1000, 500));
+		battleGround.setPreferredSize(new Dimension(500, 500));
+		battleGround.addMouseListener(this);
 		
 		battleGround.getTile(4,3).highlightTile();
-		//battleGround.getTile(4,3).unHighlightTile();
+		battleGround.getTile(4,3).unHighlightTile();
 		
 		pane.add(controls, BorderLayout.SOUTH);
 		pane.add(new JSeparator(), BorderLayout.CENTER);
@@ -86,6 +88,9 @@ public class Manager extends JFrame implements ActionListener{
 				moveButton.setEnabled(false);
 				attackButton.setEnabled(false);
 				endTurnButton.setEnabled(false);
+				lighted.unHighlightTile();
+				lighted = null;
+				battleGround.repaint();
 				break;
 			
 			case "move":
@@ -102,6 +107,30 @@ public class Manager extends JFrame implements ActionListener{
 		}
 		
 	}
+	
+	public void mousePressed(MouseEvent e){
+		int x = (int)(e.getX() / 50);
+		int y = (int)(e.getY() / 50);
+		System.out.println(x + " " + y);
+		if(x < battleGround.getRow() || y < battleGround.getCol()){
+			if(lighted == null){
+				battleGround.setMode(GameMode.SELECTED);
+				deselectButton.setEnabled(true);
+				moveButton.setEnabled(true);
+				attackButton.setEnabled(true);
+				endTurnButton.setEnabled(true);
+			}else{
+				lighted.unHighlightTile();
+			}
+			lighted = battleGround.getTile(x, y);
+			lighted.highlightTile();
+			battleGround.repaint();
+		}
+	}
+	public void mouseClicked(MouseEvent e){}
+	public void mouseEntered(MouseEvent e){}
+	public void mouseExited(MouseEvent e){}
+	public void mouseReleased(MouseEvent e){}
 	
 	private static void createAndShowGUI(){
 		Manager frame = new Manager("DeminionWahrz");
