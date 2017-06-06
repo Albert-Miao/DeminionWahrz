@@ -64,7 +64,6 @@ public abstract class Unit extends Element
 				 int r = tile.getXCoord();
 				 int c = tile.getYCoord(); 
 				 tilesToAdd.addAll(getGameGrid().getAdjacentTiles(r,c));
-				 //need a getEmptyAdjacentLocations method for gameGrid
 			 }
 			 moveableTiles.addAll(tilesToAdd);
 			 tilesToAdd.clear();

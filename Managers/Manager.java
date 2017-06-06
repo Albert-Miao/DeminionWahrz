@@ -21,7 +21,7 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 	JButton attackButton;
 	JButton endTurnButton;
 	
-	private Tile lighted;
+	private ArrayList<Tile> lighted = new ArrayList<Tile>();
 	private Tile tileToMoveTo;
 	private boolean moving;
 	
@@ -116,18 +116,11 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 				
 				Element selected = battleGround.getSelected();
 				Unit selectedUnit = (Unit) selected;
-				Set<Tile> moveableTiles = selectedUnit.getMovable();
-				for(Tile t : moveableTiles) {
+				lighted.addAll(selectedUnit.getMovable());
+				for(Tile t : lighted) {
 					t.highlightTile();
 				}
-				battleGround.addMouseListener(this);
-//				for(Tile t : moveableTiles) {
-//					t.unHighlightTile();
-//				}
-				selectedUnit.move(tileToMoveTo.getXCoord(), tileToMoveTo.getYCoord());
-				battleGround.setSelected(null);
 				battleGround.repaint();
-				battleGround.setMode(GameMode.DEFAULT);
 				break;
 			
 			case "attack":
@@ -146,7 +139,10 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 		int x = (int)(e.getX() / 50);
 		int y = (int)(e.getY() / 50);
 		System.out.println(x + " " + y);
-		if((x < battleGround.getRow() || y < battleGround.getCol()) && battleGround.hasElement(x, y)){
+		if((x < battleGround.getRow() || y < battleGround.getCol()) &&
+				battleGround.hasElement(x, y) &&
+				battleGround.getMode() != GameMode.MOVE &&
+				battleGround.getMode() != GameMode.ATTACK){
 			if(battleGround.getSelected() == null){
 				battleGround.setMode(GameMode.SELECTED);
 				deselectButton.setEnabled(true);
@@ -156,14 +152,27 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 			} else{
 				battleGround.getTile(battleGround.getSelected().getXPos(), battleGround.getSelected().getYPos()).unHighlightTile();
 			}
-			if(battleGround.getMode().equals(GameMode.MOVE)) {
-				tileToMoveTo = battleGround.getTile(battleGround.getSelected().getXPos(), battleGround.getSelected().getYPos());
-			}
 			battleGround.setSelected(battleGround.getElement(x, y));
 			battleGround.getTile(battleGround.getSelected().getXPos(), battleGround.getSelected().getYPos()).highlightTile();
 			battleGround.repaint();
+		}else if((x < battleGround.getRow() || y < battleGround.getCol()) &&
+				battleGround.getMode() == GameMode.MOVE &&
+				!battleGround.hasElement(x, y)){
+			battleGround.getTile(battleGround.getSelected().getXPos(), battleGround.getSelected().getYPos()).unHighlightTile();
+			battleGround.getSelected().moveTo(x, y);
+			System.out.println(battleGround.getSelected());
+			battleGround.setSelected(null);
+			for(Tile t : lighted) {
+				t.unHighlightTile();
+			}
+			lighted.clear();
+			
+			battleGround.setMode(GameMode.DEFAULT);
+			deselectButton.setEnabled(false);
+			battleGround.repaint();
 		}
 	}
+	
 	public void mouseClicked(MouseEvent e){}
 	public void mouseEntered(MouseEvent e){}
 	public void mouseExited(MouseEvent e){}

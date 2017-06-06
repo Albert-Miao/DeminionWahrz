@@ -128,8 +128,11 @@ public class GameGrid extends JPanel
 		return adjacent;
 	}
 	public boolean isValid(int r, int c) {
+		if(r < 0 || c < 0 || r >= numRow || c >= numCol) {
+			return false;
+		}
 		Tile tile = grid[r][c];
-		if(tile == null || r < 0 || c < 0) {
+		if(tile == null){
 			return false;
 		}
 		else {
@@ -145,7 +148,7 @@ public class GameGrid extends JPanel
 				grid[row][col].paintComponent(g);
 				if(grid[row][col].hasElement()){
 					grid[row][col].getElement().paintComponent(g);
-					//System.out.println(grid[row][col].getElement());
+					System.out.println(grid[row][col].getElement());
 				}
 			}
 		}

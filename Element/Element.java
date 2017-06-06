@@ -110,18 +110,18 @@ public abstract class Element{
         if (!gr.isValid(newX, newY))
             throw new IllegalArgumentException("Location " + newX + ", " + newY
                     + " is not valid.");
-
         if (newX == xPos && newY == yPos)
             return;
-        if(xPos > 0 && yPos > 0)
-        	gr.removeElement(xPos, yPos);
         Element other = gr.getElement(newX, newY);
         if(other != null)
         	other.removeSelfFromGrid();
+        if(xPos > 0 && yPos > 0)
+        	gr.removeElement(xPos, yPos);
         xPos = newX;
         yPos = newY;
         absX = xPos * length;
         absY = yPos * width;
+        gr.putElement(this, xPos, yPos);
 	}
 	
 	public void putSelfInGrid(GameGrid g, int x, int y){
