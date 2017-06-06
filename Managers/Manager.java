@@ -68,24 +68,11 @@ public class Manager extends JFrame implements ActionListener{
 		battleGround.setPreferredSize(new Dimension(1000, 500));
 		
 		battleGround.getTile(4,3).highlightTile();
-		battleGround.getTile(4,3).unHighlightTile();
+		//battleGround.getTile(4,3).unHighlightTile();
 		
 		pane.add(controls, BorderLayout.SOUTH);
 		pane.add(new JSeparator(), BorderLayout.CENTER);
 		pane.add(battleGround, BorderLayout.NORTH);
-		
-		pane.addPropertyChangeListener(new PropertyChangeListener(){
-			public void propertyChange(PropertyChangeEvent e){
-				String prop = e.getPropertyName();
-				
-				if((e.getSource() == battleGround) && battleGround.getMode() == GameMode.SELECTED){
-					deselectButton.setEnabled(true);
-					moveButton.setEnabled(true);
-					attackButton.setEnabled(true);
-					endTurnButton.setEnabled(true);
-				}
-			}
-		});
 	}
 	
 	public void actionPerformed(ActionEvent e){

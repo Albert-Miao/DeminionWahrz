@@ -38,7 +38,7 @@ public class GameGrid extends JPanel
 		{
 			for(int k = 0;k < numCol;k++)
 			{
-				Tile t = new Tile(i,k,50,50,1,"Managers/res/NewPiskel.png");
+				Tile t = new Tile(i,k,50,50,1,"DeminionWahrz/Managers/res/NewPiskel.png");
 				grid[i][k] = t;
 			}
 		}
