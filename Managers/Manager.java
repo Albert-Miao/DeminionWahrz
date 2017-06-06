@@ -3,6 +3,8 @@ package Managers;
 import Grid.GameGrid;
 import Grid.GameGrid.GameMode;
 import Element.Tile;
+import Element.Unit;
+import Element.Pieces.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -69,12 +71,18 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 		battleGround.setPreferredSize(new Dimension(500, 500));
 		battleGround.addMouseListener(this);
 		
+		setupElements();
+		
 		battleGround.getTile(4,3).highlightTile();
 		battleGround.getTile(4,3).unHighlightTile();
 		
 		pane.add(controls, BorderLayout.SOUTH);
 		pane.add(new JSeparator(), BorderLayout.CENTER);
 		pane.add(battleGround, BorderLayout.NORTH);
+	}
+	
+	public void setupElements(){
+		Unit firstE = new Spearman(5, 5, battleGround);
 	}
 	
 	public void actionPerformed(ActionEvent e){

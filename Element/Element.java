@@ -4,8 +4,12 @@ import Grid.GameGrid;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-import javax.swing.ImageIcon;
+import javax.imageio.ImageIO;
+import java.awt.Image;
 
 public abstract class Element{
 	
@@ -16,8 +20,9 @@ public abstract class Element{
 	private GameGrid gr;
 	private int health;
 	private String name;
-	private String imageName;
-	private ImageIcon img;
+	private String imagePath;
+	private BufferedImage image;
+	private BufferedImage displayedImage;
 	public enum Race {TOKKOKINO,AZURE,NEUTRAL};
 	private Race race;
 	private String unitType;
@@ -32,8 +37,15 @@ public abstract class Element{
 		absY = -1;
 		health = h;
 		name = n;
-		imageName = imgName;
-		img = new ImageIcon(imgName);
+		imagePath = imgName;
+		try {
+			image = ImageIO.read(new File(imagePath));
+			displayedImage = ImageIO.read(new File(imagePath));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println(imagePath);
+		}
 		length = 50;
 		width = 50;
 		race = r;
@@ -75,9 +87,9 @@ public abstract class Element{
 	public int getHealth(){
 		return health;
 	}
-	public ImageIcon getImage()
+	public BufferedImage getImage()
 	{
-		return img;
+		return image;
 	}
 	public String getUnitType()
 	{
@@ -91,25 +103,25 @@ public abstract class Element{
 	public void moveTo(int newX, int newY){
 		if (gr == null)
             throw new IllegalStateException("This actor is not in a grid.");
-        if (gr.getElement(newX, newY) != this)
+        if (gr.getTile(newX, newY).hasElement() && gr.getElement(newX, newY) != this)
             throw new IllegalStateException(
                     "The grid contains a different actor at location "
-                            + newX +", " + newY + ".");
+                            + newX +", " + newY + ". " +this);
         if (!gr.isValid(newX, newY))
             throw new IllegalArgumentException("Location " + newX + ", " + newY
                     + " is not valid.");
 
         if (newX == xPos && newY == yPos)
             return;
-        gr.removeElement(xPos, yPos);
-        Element other = gr.getElement(xPos, yPos);
+        if(xPos > 0 && yPos > 0)
+        	gr.removeElement(xPos, yPos);
+        Element other = gr.getElement(newX, newY);
         if(other != null)
         	other.removeSelfFromGrid();
         xPos = newX;
         yPos = newY;
         absX = xPos * length;
         absY = yPos * width;
-        gr.putElement(this, newX, newY);
 	}
 	
 	public void putSelfInGrid(GameGrid g, int x, int y){
@@ -120,10 +132,8 @@ public abstract class Element{
         if(element != null){
         	element.removeSelfFromGrid();
         }
-        g.putElement(this, x, y);
         gr = g;
-        xPos = x;
-        yPos = y;
+        g.putElement(this, x, y);
 	}
 	
 	public void removeSelfFromGrid(){
@@ -155,4 +165,9 @@ public abstract class Element{
     {
         return getClass().getName() + "[location=" + xPos + " " + yPos + " health=" + health + "]";
     }
+	public void paintComponent(Graphics g)
+	{
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.drawImage(displayedImage,absX,absY,width,length,null);
+	}
 }

@@ -68,6 +68,11 @@ public class Tile
 	public void setElement(Element e) {
 		element = e;
 	}
+	public boolean hasElement(){
+		if(element == null)
+			return false;
+		return true;
+	}
 	public Element getElement() {
 		return element;
 	}

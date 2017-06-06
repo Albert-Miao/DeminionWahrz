@@ -9,7 +9,7 @@ public class Spearman extends Unit //
 	//private float burnChance; Mess with this later
 	
 	public Spearman(int x, int y, GameGrid gr){
-		super("Spearman", "imageName", 3, Race.TOKKOKINO, "soldier", 5, 0, 1, 1, 3);
+		super("Spearman", "DeminionWahrz/Element/Pieces/res/Spearman.png", 3, Race.TOKKOKINO, "soldier", 5, 0, 1, 1, 3);
 		putSelfInGrid(gr, x, y);
 		//burnChance = 10;
 	}

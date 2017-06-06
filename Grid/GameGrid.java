@@ -91,13 +91,6 @@ public class GameGrid extends JPanel
 	
 	public void putElement(Element element, int r, int c) {
 		element.moveTo(r,c);
-		
-		int xAbs = getAbsolutePositionX(r,c);
-		int yAbs = getAbsolutePositionY(r,c);
-		
-		element.setAbsX(xAbs);
-		element.setAbsY(yAbs);
-		
 		grid[r][c].setElement(element);
 	}
 	
@@ -146,6 +139,10 @@ public class GameGrid extends JPanel
 		for(int row = 0; row < numRow; row++) {
 			for(int col = 0; col < numCol; col++) {
 				grid[row][col].paintComponent(g);
+				if(grid[row][col].hasElement()){
+					grid[row][col].getElement().paintComponent(g);
+					//System.out.println(grid[row][col].getElement());
+				}
 			}
 		}
 	}
