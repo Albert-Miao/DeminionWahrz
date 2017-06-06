@@ -52,6 +52,18 @@ public class GameGrid extends JPanel
 		mode = mo;
 	}
 	
+	public Race getTurn(){
+		return turn;
+	}
+	
+	public void switchTurn(){
+		if(turn == Race.AZURE){
+			turn = Race.TOKKOKINO;
+		}else{
+			turn = Race.AZURE;
+		}
+	}
+	
 	public Element getSelected(){
 		return selected;
 	}

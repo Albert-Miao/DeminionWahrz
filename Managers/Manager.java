@@ -48,7 +48,7 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 		
 		endTurnButton = new JButton("End Turn");
 		endTurnButton.setActionCommand("end turn");
-		endTurnButton.setEnabled(false);
+		endTurnButton.setEnabled(true);
 		
 		deselectButton.addActionListener(this);
 		moveButton.addActionListener(this);
@@ -90,7 +90,7 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 	public void setupElements(){
 		Unit firstE = new Spearman(5, 5, battleGround);
 		Unit secondE = new Spearman(3, 7, battleGround);
-		Unit thirdE = new Spearman(9, 9, battleGround);
+		Unit thirdE = new Knight(9, 9, battleGround);
 	}
 	
 	public void actionPerformed(ActionEvent e){
@@ -102,7 +102,7 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 				deselectButton.setEnabled(false);
 				moveButton.setEnabled(false);
 				attackButton.setEnabled(false);
-				endTurnButton.setEnabled(false);
+				endTurnButton.setEnabled(true);
 				battleGround.getTile(battleGround.getSelected().getXPos(), battleGround.getSelected().getYPos()).unHighlightTile();
 				battleGround.setSelected(null);
 				battleGround.repaint();
@@ -127,6 +127,7 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 				break;
 			
 			case "end turn":
+				battleGround.switchTurn();
 				break;
 				
 			default:
@@ -139,8 +140,9 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 		int x = (int)(e.getX() / 50);
 		int y = (int)(e.getY() / 50);
 		System.out.println(x + " " + y);
-		if((x < battleGround.getRow() || y < battleGround.getCol()) &&
+		if((x < battleGround.getRow() && y < battleGround.getCol()) &&
 				battleGround.hasElement(x, y) &&
+				battleGround.getElement(x, y).getRace() == battleGround.getTurn() &&
 				battleGround.getMode() != GameMode.MOVE &&
 				battleGround.getMode() != GameMode.ATTACK){
 			if(battleGround.getSelected() == null){
@@ -148,7 +150,7 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 				deselectButton.setEnabled(true);
 				moveButton.setEnabled(true);
 				attackButton.setEnabled(true);
-				endTurnButton.setEnabled(true);
+				endTurnButton.setEnabled(false);
 			} else{
 				battleGround.getTile(battleGround.getSelected().getXPos(), battleGround.getSelected().getYPos()).unHighlightTile();
 			}
@@ -169,6 +171,7 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 			
 			battleGround.setMode(GameMode.DEFAULT);
 			deselectButton.setEnabled(false);
+			endTurnButton.setEnabled(true);
 			battleGround.repaint();
 		}
 	}
