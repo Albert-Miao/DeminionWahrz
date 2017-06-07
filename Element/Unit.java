@@ -15,6 +15,7 @@ public abstract class Unit extends Element
 	 private int rangeMin;
 	 private int rangeMax;
 	 private int defense;
+	 private int defenseDealt;
 	 
 	 private boolean action = true;
 	 public Unit(String n, String imgName, int h, Race r, String ut, int att, int def, int rngeMin, int rngeMax, int mvement)
@@ -25,7 +26,8 @@ public abstract class Unit extends Element
 		rangeMin = rngeMin;
 		rangeMax = rngeMax;
 		movement = mvement;
-		defense = def;		
+		defense = def;
+		defenseDealt = def;
 	 }
 	 
 	 public int getAttack()
@@ -41,6 +43,10 @@ public abstract class Unit extends Element
 		 return damageDealt;
 	 }
 	 
+	 public int getDefenseDealt(){
+		 return defenseDealt;
+	 }
+	 
 	 public void setAttack(int att)
 	 {
 	 	attack = att;
@@ -52,6 +58,10 @@ public abstract class Unit extends Element
 	 
 	 public void setDamageDealt(int dmg){
 		damageDealt = dmg;
+	 }
+	 
+	 public void setDefenseDealt(int def){
+		 defenseDealt = def;
 	 }
 	 
 	 public Set<Tile> getMovable(){
@@ -107,5 +117,4 @@ public abstract class Unit extends Element
 	 
 	 public abstract void move(int row, int col);
 	 public abstract void attack(Element e);
-	 public abstract void attack(Unit u);
 }

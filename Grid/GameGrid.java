@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.awt.*;
 import java.net.URL;
 
+import Element.Tiles.*;
+
 public class GameGrid extends JPanel
 {
 	private int numRow;
@@ -38,7 +40,7 @@ public class GameGrid extends JPanel
 		{
 			for(int k = 0;k < numCol;k++)
 			{
-				Tile t = new Tile(i,k,50,50,1,"DeminionWahrz/Managers/res/NewPiskel.png");
+				Tile t = new Regular(i, k);
 				grid[i][k] = t;
 			}
 		}
@@ -217,6 +219,7 @@ public class GameGrid extends JPanel
 				grid[row][col].paintComponent(g);
 				if(grid[row][col].hasElement()){
 					grid[row][col].getElement().paintComponent(g);
+					grid[row][col].modUnit();
 					//System.out.println(grid[row][col].getElement());
 				}
 			}

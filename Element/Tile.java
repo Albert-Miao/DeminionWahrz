@@ -12,7 +12,7 @@ import java.awt.Image;
 import java.awt.Color;
 
 
-public class Tile
+public abstract class Tile
 {
 	private int xPos;
 	private int yPos;
@@ -90,7 +90,7 @@ public class Tile
 				int b = c.getBlue();
 				int a = c.getAlpha();
 				
-				Color greenTint = new Color(r, 255, b, a);
+				Color greenTint = new Color(r, 225, b, a);
 				
 				displayedImage.setRGB(i, k, greenTint.getRGB());
 			}
@@ -138,4 +138,6 @@ public class Tile
 	public String toString(){
 		return x + " " + y;
 	}
+	
+	public abstract void modUnit();
 }

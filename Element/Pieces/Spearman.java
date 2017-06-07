@@ -9,24 +9,15 @@ public class Spearman extends Unit //
 	//private float burnChance; Mess with this later
 	
 	public Spearman(int x, int y, GameGrid gr){
-		super("Spearman", "DeminionWahrz/Element/Pieces/res/Spearman.png", 3, Race.TOKKOKINO, "soldier", 5, 0, 1, 1, 2);
+		super("Spearman", "DeminionWahrz/Element/Pieces/res/Spearman.png", 3, Race.TOKKOKINO, "soldier", 4, 0, 1, 1, 2);
 		putSelfInGrid(gr, x, y);
 		//burnChance = 10;
 	}
 	
 	public void attack(Element element){
-		element.setHealth(element.getHealth() - getDamageDealt());
+		element.setHealth(element.getHealth() - (getDamageDealt() - ((Unit) element).getDefenseDealt()));
 	}
-	
-	public void attack(Unit u){
-		int damage = getDamageDealt() - u.getDefense();
-		if(u.getHealth() <= damage){
-			u.setHealth(u.getHealth() - damage);
-		}else{
-			u.setHealth(u.getHealth() - damage);
-			setHealth(getHealth() - (u.getDamageDealt() - getDefense()));
-		}
-	}
+	//change
 	public void move(int row, int col)
 	{
 		moveTo(row, col);
