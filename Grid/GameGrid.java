@@ -82,7 +82,7 @@ public class GameGrid extends JPanel
 		else {
 			victor = null;
 		}
-		System.out.println(victor);
+		
 		return victor;
 	}
 	public void switchTurn(){
@@ -149,6 +149,10 @@ public class GameGrid extends JPanel
 	
 	public Element getElement(int r, int c) {
 		return grid[r][c].getElement();
+	}
+	
+	public Unit getElementAsUnit(int r, int c) {
+		return (Unit)grid[r][c].getElement();
 	}
 	
 	public boolean hasElement(int r, int c) {
@@ -222,7 +226,7 @@ public class GameGrid extends JPanel
 				occupiedAdjacent.add(t);
 			}
 		}
-		System.out.println(occupiedAdjacent);
+		
 		return occupiedAdjacent;
 	}
 	public boolean isValid(int r, int c) {

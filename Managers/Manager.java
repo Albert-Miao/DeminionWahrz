@@ -33,6 +33,9 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 	
 	private GameGrid battleGround;
 	
+	private int prevX = -1;
+	private int prevY = -1;
+	
 	GridLayout controlLayout = new GridLayout(0, 4);//deselect, move, attack, endturn buttons
 	public Manager(String name) {
 		super(name);
@@ -104,9 +107,9 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 		Unit fifthKnight = new Knight(5, 2, battleGround);
 		
 		Unit firstHarpy = new Harpy(0,0, battleGround);
-		Unit secondHarpy = new Harpy(1,9, battleGround);
+		Unit secondHarpy = new Harpy(9,0, battleGround);
 		
-		Unit titan = new Titan(5,1, battleGround);
+		Unit titan = new Titan(5,8, battleGround);
 		
 		//TOKKOKINO
 		
@@ -119,7 +122,7 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 		Unit firstDragon = new Dragon(0,9, battleGround);
 		Unit secondDragon = new Dragon(9,9, battleGround);
 		
-		Unit yeti = new Yeti(5,8, battleGround);
+		Unit yeti = new Yeti(5,1, battleGround);
 
 	}
 	
@@ -181,7 +184,7 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 				endTurnButton.setEnabled(false);
 				
 				attackable.addAll(battleGround.getSelectedAsUnit().getRange());
-				System.out.println(attackable);
+				//System.out.println(attackable);
 				for(Tile t : attackable) {
 					t.highlightTileRed();
 				}
@@ -210,21 +213,19 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 		int x = (int)(e.getX() / 50);
 		int y = (int)(e.getY() / 50);
 		
-		clickCounter++;
-		if(clickCounter == 1) {
-			firstClickTime = System.currentTimeMillis() % 1000;
-		}
-		if(clickCounter == 2) {
-			secondClickTime = System.currentTimeMillis() % 1000;
-		}
-		if(secondClickTime - firstClickTime <= timerinterval) {
+		firstClickTime = secondClickTime;
+		secondClickTime = System.currentTimeMillis();
+		
+		if(secondClickTime - firstClickTime <= timerinterval&& prevX == x && prevY == y) {
 			JOptionPane.showMessageDialog((JFrame) SwingUtilities.getWindowAncestor(battleGround),
-			"Name: " + battleGround.getSelected().getName() + "\n" +
-			"Attack: " + battleGround.getSelectedAsUnit().getAtt() +" ("+ battleGround.getTile(x,y).getAttMod()+" )" + "\n" +
-			"Defense: " + battleGround.getSelectedAsUnit().getDef() +" ("+battleGround.getSelectedAsUnit().getDefMod()+" )" + "\n" +
-			"Health: " + (battleGround.getSelectedAsUnit().getHealth())
+			"Name: " + battleGround.getElement(x, y).getName() + "\n" +
+			"Attack: " + battleGround.getElementAsUnit(x, y).getAttack() +" ("+ battleGround.getTile(x,y).getAttMod()+" )" + "\n" +
+			"Defense: " + battleGround.getElementAsUnit(x, y).getDefense() +" ("+battleGround.getTile(x,y).getDefMod()+" )" + "\n" +
+			"Health: " + (battleGround.getElement(x, y).getHealth())
 			);
 		}
+		prevX = x;
+		prevY = y;
 		//System.out.println(x + " " + y);
 		if((x < battleGround.getRow() && y < battleGround.getCol()) &&
 				battleGround.hasElement(x, y) &&
@@ -266,7 +267,7 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 				battleGround.getSelected() instanceof Unit) {
 			battleGround.getSelectedAsUnit().attack(battleGround.getElement(x, y));
 			battleGround.getSelected().setAction(false);
-			System.out.println("Attacked!");
+			//System.out.println("Attacked!");
 			
 			for(Tile t : attackable) {
 				t.unHighlightTile();
