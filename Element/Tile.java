@@ -26,6 +26,9 @@ public abstract class Tile
 	private BufferedImage displayedImage;
 	private Element element;
 	
+	private int attMod;
+	private int defMod;
+	
 	public Tile(int xP, int yP, int l, int w,int tt, String imagepath)
 	{
 		x = xP;
@@ -139,5 +142,25 @@ public abstract class Tile
 		return x + " " + y;
 	}
 	
-	public abstract void modUnit();
+	public void modUnit(){
+		Unit u = (Unit) getElement();
+		u.setDamageDealt(u.getAttack() + attMod);
+		u.setDefenseDealt(u.getDefense() + defMod);
+	}
+	
+	public int getAttMod(){
+		return attMod;
+	}
+	
+	public int getDefMod(){
+		return defMod;
+	}
+	
+	public void setAttMod(int a){
+		attMod = a;
+	}
+	
+	public void setDefMod(int d){
+		defMod = d;
+	}
 }
