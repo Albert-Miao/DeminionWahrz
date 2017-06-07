@@ -9,7 +9,7 @@ public class Priest extends Unit //
 	//private float burnChance; Mess with this later
 	
 	public Priest(int x, int y, GameGrid gr){
-		super("Priest", "imageName", 4, Race.AZURE, "support", 1, 1, 1, 1, 2);
+		super("Priest", "Element/Pieces/res/Priest.png", 4, Race.AZURE, "support", 1, 1, 1, 1, 2);
 		putSelfInGrid(gr, x, y);
 		//burnChance = 10;
 	}

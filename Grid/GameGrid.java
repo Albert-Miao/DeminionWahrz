@@ -45,6 +45,8 @@ public class GameGrid extends JPanel
 				grid[i][k] = t;
 			}
 		}
+		
+		setStartingBoard();
 	}
 	
 	public GameMode getMode(){
@@ -236,6 +238,39 @@ public class GameGrid extends JPanel
 		}
 		
 	}
+	
+	public void setStartingBoard(){
+		
+		grid[1][2] = new Desert(1, 2);
+		grid[2][2] = new Desert(2, 2);
+		grid[3][2] = new Desert(3, 2);
+		grid[6][2] = new Desert(6, 2);
+		grid[7][2] = new Desert(7, 2);
+		grid[8][2] = new Desert(8, 2);
+		grid[1][7] = new Desert(1, 7);
+		grid[2][7] = new Desert(2, 7);
+		grid[3][7] = new Desert(3, 7);
+		grid[6][7] = new Desert(6, 7);
+		grid[7][7] = new Desert(7, 7);
+		grid[8][7] = new Desert(8, 7);
+		
+		grid[1][4] = new Mountain(1, 4);
+		grid[4][4] = new Mountain(4, 4);
+		grid[5][5] = new Mountain(5, 5);
+		grid[8][5] = new Mountain(8, 5);
+		grid[2][5] = new Mountain(2, 5);
+		grid[3][5] = new Mountain(3, 5);
+		grid[6][4] = new Mountain(6, 4);
+		grid[7][4] = new Mountain(7, 4);
+		
+		grid[3][4] = new Forest(3, 4);
+		grid[6][5] = new Forest(6, 5);
+		grid[5][4] = new Forest(5, 4);
+		grid[4][5] = new Forest(4, 5);
+		grid[4][7] = new Forest(4, 7);
+		grid[5][2] = new Forest(5, 2);
+	}
+	
 	public void paintComponent(Graphics g) {
 		
 		//Graphics2D g2d = (Graphics2D) g;

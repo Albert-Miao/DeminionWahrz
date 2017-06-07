@@ -9,7 +9,7 @@ public class Dragon extends Unit //
 	//private float burnChance; Mess with this later
 	
 	public Dragon(int x, int y, GameGrid gr){
-		super("Dragon", "imageName", 5, Race.TOKKOKINO, "soldier", 5, 0, 1, 2, 5);
+		super("Dragon", "Element/Pieces/res/Dragon.png", 5, Race.TOKKOKINO, "soldier", 5, 0, 1, 2, 5);
 		putSelfInGrid(gr, x, y);
 		//burnChance = 10;
 	}

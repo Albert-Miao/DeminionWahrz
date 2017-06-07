@@ -9,7 +9,7 @@ public class Shaman extends Unit //
 	//private float burnChance; Mess with this later
 	
 	public Shaman(int x, int y, GameGrid gr){
-		super("Shaman", "imageName", 3, Race.TOKKOKINO, "support", 2, 0, 1, 1, 3);
+		super("Shaman", "Element/Pieces/res/Shaman.png", 3, Race.TOKKOKINO, "support", 2, 0, 1, 1, 3);
 		putSelfInGrid(gr, x, y);
 		//burnChance = 10;
 	}
