@@ -5,6 +5,7 @@ import Grid.GameGrid.GameMode;
 import Element.Tile;
 import Element.Unit;
 import Element.Element;
+import Element.Element.Race;
 import Element.Pieces.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -23,6 +24,7 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 	
 	private ArrayList<Tile> lighted = new ArrayList<Tile>();
 	private ArrayList<Tile> attackable = new ArrayList<Tile>();
+	private Race victor;
 	
 	private GameGrid battleGround;
 	
@@ -94,6 +96,19 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 		Unit thirdE = new Knight(4, 9, battleGround);
 	}
 	
+	public void checkVictor() {
+		JLabel victoryMessage = new JLabel();
+		victor = battleGround.getVictor();
+		if(victor == Race.AZURE) {
+			victoryMessage.setText("AZURE IS VICTORIOUS");
+			battleGround.add(victoryMessage,BorderLayout.CENTER);
+		}
+		else if(victor == Race.TOKKOKINO) {
+			victoryMessage.setText("AZURE IS VICTORIOUS");
+			battleGround.add(victoryMessage,BorderLayout.CENTER);
+		}
+	}
+	
 	public void actionPerformed(ActionEvent e){
 		
 		switch(e.getActionCommand()) {
@@ -157,6 +172,7 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 						}
 					}
 				}
+				checkVictor();
 				break;
 				
 			default:

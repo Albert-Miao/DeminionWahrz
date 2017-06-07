@@ -26,6 +26,7 @@ public class GameGrid extends JPanel
 	
 	private GameMode mode = GameMode.DEFAULT;
 	private Race turn = Race.AZURE;
+	Race victor;
 	
 	public GameGrid(int r, int c)
 	{
@@ -57,7 +58,30 @@ public class GameGrid extends JPanel
 	public Race getTurn(){
 		return turn;
 	}
-	
+	public Race getVictor() {
+		int tokCount = 0;
+		int azuCount = 0;
+		for(int i = 0; i < grid.length;i++) {
+			for(int k = 0; k < grid[0].length; k++) {
+				if(grid[i][k].getElement().getRace().equals(Race.TOKKOKINO)) {
+					tokCount++;
+				}
+				if(grid[i][k].getElement().getRace().equals(Race.AZURE)) {
+					azuCount++;
+				}
+			}
+		}
+		if(azuCount == 0 && tokCount > 0) {
+			victor = Race.AZURE;
+			}
+		else if(tokCount == 0 && azuCount > 0) {
+			victor =  Race.TOKKOKINO;
+			}
+		else {
+			victor = null;
+		}
+		return victor;
+	}
 	public void switchTurn(){
 		if(turn == Race.AZURE){
 			turn = Race.TOKKOKINO;
