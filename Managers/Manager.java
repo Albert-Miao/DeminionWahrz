@@ -223,6 +223,7 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 		else if( (x < battleGround.getRow() || y < battleGround.getCol()) && battleGround.getMode() == GameMode.ATTACK && //Attack
 				battleGround.getSelected() instanceof Unit) {
 			battleGround.getSelectedAsUnit().attack(battleGround.getElement(x, y));
+			battleGround.getSelected().setAction(false);
 			System.out.println("Attacked!");
 			
 			for(Tile t : attackable) {
