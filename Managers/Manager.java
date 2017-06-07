@@ -215,6 +215,7 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 		
 		firstClickTime = secondClickTime;
 		secondClickTime = System.currentTimeMillis();
+		try {
 		
 		if(secondClickTime - firstClickTime <= timerinterval&& prevX == x && prevY == y) {
 			JOptionPane.showMessageDialog((JFrame) SwingUtilities.getWindowAncestor(battleGround),
@@ -226,6 +227,10 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 		}
 		prevX = x;
 		prevY = y;
+		}
+		catch(Exception ex) {
+			
+		}
 		//System.out.println(x + " " + y);
 		if((x < battleGround.getRow() && y < battleGround.getCol()) &&
 				battleGround.hasElement(x, y) &&
