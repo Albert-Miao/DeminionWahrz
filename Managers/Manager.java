@@ -26,6 +26,10 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 	private ArrayList<Tile> lighted = new ArrayList<Tile>();
 	private ArrayList<Tile> attackable = new ArrayList<Tile>();
 	private Race victor;
+	private int clickCounter;
+	private Integer timerinterval = (Integer) Toolkit.getDefaultToolkit().getDesktopProperty("awt.multiClickInterval");
+	private long firstClickTime;
+	private long secondClickTime;
 	
 	private GameGrid battleGround;
 	
@@ -92,9 +96,31 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 	public void setupElements(){
 		System.out.println("AZURE TURN");
 		
-		Unit firstE = new Spearman(5, 5, battleGround);
-		Unit secondE = new Spearman(3, 7, battleGround);
-		Unit thirdE = new Knight(4, 9, battleGround);
+		//AZURE
+		Unit firstKnight = new Knight(1, 3, battleGround);
+		Unit secondKnight = new Knight(3, 3, battleGround);
+		Unit thirdKnight = new Knight(6, 3, battleGround);
+		Unit fourthKnight = new Knight(8, 3, battleGround);
+		Unit fifthKnight = new Knight(5, 2, battleGround);
+		
+		Unit firstHarpy = new Harpy(0,0, battleGround);
+		Unit secondHarpy = new Harpy(1,9, battleGround);
+		
+		Unit titan = new Titan(5,1, battleGround);
+		
+		//TOKKOKINO
+		
+		Unit firstSpearman = new Spearman(1,6 , battleGround);
+		Unit secondSpearman = new Spearman(3, 6, battleGround);
+		Unit thirdSpearman = new Spearman(6, 6, battleGround);
+		Unit fourthSpearman = new Spearman(8, 6, battleGround);
+		Unit fifthSpearman = new Spearman(5, 6, battleGround);
+		
+		Unit firstDragon = new Dragon(0,9, battleGround);
+		Unit secondDragon = new Dragon(9,9, battleGround);
+		
+		Unit yeti = new Yeti(5,8, battleGround);
+
 	}
 	
 	public void checkVictor() {
@@ -183,6 +209,22 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 	public void mousePressed(MouseEvent e){
 		int x = (int)(e.getX() / 50);
 		int y = (int)(e.getY() / 50);
+		
+		clickCounter++;
+		if(clickCounter == 1) {
+			firstClickTime = System.currentTimeMillis() % 1000;
+		}
+		if(clickCounter == 2) {
+			secondClickTime = System.currentTimeMillis() % 1000;
+		}
+		if(secondClickTime - firstClickTime <= timerinterval) {
+			JOptionPane.showMessageDialog((JFrame) SwingUtilities.getWindowAncestor(battleGround),
+			"Name: " + battleGround.getSelected().getName() + "\n" +
+			"Attack: " + battleGround.getSelectedAsUnit().getAtt() +" ("+ battleGround.getTile(x,y).getAttMod()+" )" + "\n" +
+			"Defense: " + battleGround.getSelectedAsUnit().getDef() +" ("+battleGround.getSelectedAsUnit().getDefMod()+" )" + "\n" +
+			"Health: " + (battleGround.getSelectedAsUnit().getHealth())
+			);
+		}
 		//System.out.println(x + " " + y);
 		if((x < battleGround.getRow() && y < battleGround.getCol()) &&
 				battleGround.hasElement(x, y) &&
