@@ -59,8 +59,10 @@ public class GameGrid extends JPanel
 	public void switchTurn(){
 		if(turn == Race.AZURE){
 			turn = Race.TOKKOKINO;
+			System.out.println("TOKKOKINO TURN");
 		}else{
 			turn = Race.AZURE;
+			System.out.println("AZURE TURN");
 		}
 	}
 	
@@ -160,7 +162,7 @@ public class GameGrid extends JPanel
 				grid[row][col].paintComponent(g);
 				if(grid[row][col].hasElement()){
 					grid[row][col].getElement().paintComponent(g);
-					System.out.println(grid[row][col].getElement());
+					//System.out.println(grid[row][col].getElement());
 				}
 			}
 		}

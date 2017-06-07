@@ -88,6 +88,8 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 	}
 	
 	public void setupElements(){
+		System.out.println("AZURE TURN");
+		
 		Unit firstE = new Spearman(5, 5, battleGround);
 		Unit secondE = new Spearman(3, 7, battleGround);
 		Unit thirdE = new Knight(9, 9, battleGround);
@@ -128,6 +130,13 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 			
 			case "end turn":
 				battleGround.switchTurn();
+				for(int i = 0; i < battleGround.getRow(); i++){
+					for(int j = 0; j < battleGround.getCol(); j++){
+						if(battleGround.hasElement(i, j) && battleGround.getElement(i, j).getRace() == battleGround.getTurn()){
+							battleGround.getElement(i, j).setAction(true);
+						}
+					}
+				}
 				break;
 				
 			default:
@@ -139,10 +148,11 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 	public void mousePressed(MouseEvent e){
 		int x = (int)(e.getX() / 50);
 		int y = (int)(e.getY() / 50);
-		System.out.println(x + " " + y);
+		//System.out.println(x + " " + y);
 		if((x < battleGround.getRow() && y < battleGround.getCol()) &&
 				battleGround.hasElement(x, y) &&
 				battleGround.getElement(x, y).getRace() == battleGround.getTurn() &&
+				battleGround.getElement(x, y).hasAction() &&
 				battleGround.getMode() != GameMode.MOVE &&
 				battleGround.getMode() != GameMode.ATTACK){
 			if(battleGround.getSelected() == null){
@@ -162,7 +172,8 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 				!battleGround.hasElement(x, y)){
 			battleGround.getTile(battleGround.getSelected().getXPos(), battleGround.getSelected().getYPos()).unHighlightTile();
 			battleGround.getSelected().moveTo(x, y);
-			System.out.println(battleGround.getSelected());
+			battleGround.getSelected().setAction(false);
+			//System.out.println(battleGround.getSelected());
 			battleGround.setSelected(null);
 			for(Tile t : lighted) {
 				t.unHighlightTile();

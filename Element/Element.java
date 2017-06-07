@@ -2,6 +2,7 @@ package Element;
 
 import Grid.GameGrid;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -29,6 +30,7 @@ public abstract class Element{
 	private int length;
 	private int width;
 	
+	private boolean action = true;
 	public Element(String n, String imgName, int h, Race r, String ut){
 		gr = null;
 		xPos = -1;
@@ -50,6 +52,22 @@ public abstract class Element{
 		width = 50;
 		race = r;
 		unitType = ut;
+	}
+	
+	 
+	public boolean hasAction(){
+		return action;
+	}
+	 
+	public void setAction(boolean bo){
+		action = bo;
+		if(action){
+			displayedImage = image;
+		}else{
+			//find way to tint transparent image
+		}
+		Graphics imageGraphics = displayedImage.getGraphics();
+		paintComponent(imageGraphics);
 	}
 	
 	public String getName(){

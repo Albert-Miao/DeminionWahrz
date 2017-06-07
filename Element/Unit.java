@@ -17,7 +17,8 @@ public abstract class Unit extends Element
 	 private int rangeMin;
 	 private int rangeMax;
 	 private int defense;
-	  
+	 
+	 private boolean action = true;
 	 public Unit(String n, String imgName, int h, Race r, String ut, int att, int def, int rngeMin, int rngeMax, int mvement)
 	 {
 	 	super(n, imgName, h, r, ut);
