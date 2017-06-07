@@ -6,7 +6,7 @@ import Grid.GameGrid;
 
 public class Knight extends Unit{
 	public Knight(int x, int y, GameGrid gr){
-		super("Knight", "DeminionWahrz/Element/Pieces/res/Knight.png", 6, Race.AZURE, "soldier", 2, 1, 1, 1, 1);
+		super("Knight", "Element/Pieces/res/Knight.png", 6, Race.AZURE, "soldier", 2, 1, 1, 1, 1);
 		putSelfInGrid(gr, x, y);
 	}
 	

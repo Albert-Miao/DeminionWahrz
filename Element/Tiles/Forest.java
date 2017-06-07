@@ -8,7 +8,7 @@ public class Forest extends Tile{
 	private int defMod = 3;
 	
 	public Forest(int x, int y){
-		super(x, y, 50, 50, 1, "DeminionWahrz/Element/Tiles/res/Forest.png");
+		super(x, y, 50, 50, 1, "Element/Tiles/res/Forest.png");
 	}
 	
 	public void modUnit(){

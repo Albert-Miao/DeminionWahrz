@@ -8,6 +8,7 @@ import Element.Element;
 import Element.Element.Race;
 import Element.Pieces.*;
 import java.awt.*;
+import javax.swing.JOptionPane;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Set;
@@ -97,15 +98,13 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 	}
 	
 	public void checkVictor() {
-		JLabel victoryMessage = new JLabel();
+		//JOptionPane victoryMessage = new JOptionPane();
 		victor = battleGround.getVictor();
 		if(victor == Race.AZURE) {
-			victoryMessage.setText("AZURE IS VICTORIOUS");
-			battleGround.add(victoryMessage,BorderLayout.CENTER);
+			JOptionPane.showMessageDialog((JFrame) SwingUtilities.getWindowAncestor(battleGround),"AZURE WINS!");
 		}
 		else if(victor == Race.TOKKOKINO) {
-			victoryMessage.setText("AZURE IS VICTORIOUS");
-			battleGround.add(victoryMessage,BorderLayout.CENTER);
+			JOptionPane.showMessageDialog((JFrame) SwingUtilities.getWindowAncestor(battleGround),"AZURE WINS!");
 		}
 	}
 	

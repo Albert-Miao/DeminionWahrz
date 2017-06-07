@@ -63,23 +63,24 @@ public class GameGrid extends JPanel
 		int azuCount = 0;
 		for(int i = 0; i < grid.length;i++) {
 			for(int k = 0; k < grid[0].length; k++) {
-				if(grid[i][k].getElement().getRace().equals(Race.TOKKOKINO)) {
+				if(hasElement(i,k) && grid[i][k].getElement().getRace().equals(Race.TOKKOKINO)) {
 					tokCount++;
 				}
-				if(grid[i][k].getElement().getRace().equals(Race.AZURE)) {
+				if(hasElement(i,k) && grid[i][k].getElement().getRace().equals(Race.AZURE)) {
 					azuCount++;
 				}
 			}
 		}
 		if(azuCount == 0 && tokCount > 0) {
-			victor = Race.AZURE;
+			victor = Race.TOKKOKINO;
 			}
 		else if(tokCount == 0 && azuCount > 0) {
-			victor =  Race.TOKKOKINO;
+			victor =  Race.AZURE;
 			}
 		else {
 			victor = null;
 		}
+		System.out.println(victor);
 		return victor;
 	}
 	public void switchTurn(){

@@ -8,7 +8,7 @@ public class Desert extends Tile{
 	private int defMod = -2;
 	
 	public Desert(int x, int y){
-		super(x, y, 50, 50, 1, "DeminionWahrz/Element/Tiles/res/Desert.png");
+		super(x, y, 50, 50, 1, "Element/Tiles/res/Desert.png");
 	}
 	
 	public void modUnit(){

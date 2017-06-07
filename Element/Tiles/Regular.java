@@ -8,7 +8,7 @@ public class Regular extends Tile{
 	private int defMod = 0;
 	
 	public Regular(int x, int y){
-		super(x, y, 50, 50, 1, "DeminionWahrz/Element/Tiles/res/Regular.png");
+		super(x, y, 50, 50, 1, "Element/Tiles/res/Regular.png");
 	}
 	
 	public void modUnit(){

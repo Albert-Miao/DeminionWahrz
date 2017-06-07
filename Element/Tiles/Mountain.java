@@ -8,7 +8,7 @@ public class Mountain extends Tile{
 	private int defMod = 3;
 	
 	public Mountain(int x, int y){
-		super(x, y, 50, 50, 1, "DeminionWahrz/Element/Tiles/res/Mountain.png");
+		super(x, y, 50, 50, 1, "Element/Tiles/res/Mountain.png");
 	}
 	
 	public void modUnit(){
