@@ -98,6 +98,25 @@ public class Tile
 		Graphics imageGraphics = displayedImage.getGraphics();
 		paintComponent(imageGraphics);
 	}
+	public void highlightTileRed() { //Tint tiles red
+			
+			for(int i = 0; i < image.getWidth(null); i++) {
+				for(int k = 0; k < image.getWidth(null); k++) {
+					Color c = new Color(image.getRGB(i,k));
+					//System.out.println(c.toString());
+					int r = c.getRed();
+					int g = c.getGreen();
+					int b = c.getBlue();
+					int a = c.getAlpha();
+					
+					Color greenTint = new Color(255, g, b, a);
+					
+					displayedImage.setRGB(i, k, greenTint.getRGB());
+				}
+			}
+			Graphics imageGraphics = displayedImage.getGraphics();
+			paintComponent(imageGraphics);
+		}
 	public void unHighlightTile() {	
 		try {
 			displayedImage = ImageIO.read(new File(imagePath));

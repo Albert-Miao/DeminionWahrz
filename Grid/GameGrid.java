@@ -1,10 +1,10 @@
 package Grid;
 
-import javax.swing.JComponent;
 import javax.swing.JPanel;
 import Element.Tile;
 import Element.Element;
 import Element.Element.Race;
+import Element.Unit;
 
 import java.util.ArrayList;
 import java.awt.*;
@@ -69,7 +69,9 @@ public class GameGrid extends JPanel
 	public Element getSelected(){
 		return selected;
 	}
-	
+	public Unit getSelectedAsUnit(){
+		return (Unit)selected;
+	}
 	public void setSelected(Element e){
 		selected = e;
 	}
@@ -140,6 +142,33 @@ public class GameGrid extends JPanel
 		if (isValid(r,c-1)) { adjacent.add(grid[r][c-1]); }
 		
 		return adjacent;
+	}
+	public ArrayList<Tile> getEmptyAdjacentTiles(int r, int c) {
+		ArrayList<Tile> emptyAdjacent = new ArrayList<Tile>();
+		
+		if (isValid(r+1,c)){ 
+			if(!hasElement(r+1,c)) { 
+				emptyAdjacent.add(grid[r+1][c]); 
+				}
+			}
+		if (isValid(r-1,c)){ 
+			if(!hasElement(r-1,c)) { 
+				emptyAdjacent.add(grid[r-1][c]); 
+				}
+			}
+		if (isValid(r,c+1)){ 
+			if(!hasElement(r,c+1)) { 
+				emptyAdjacent.add(grid[r][c+1]); 
+				}
+			}
+		if (isValid(r,c-1)){ 
+			if(!hasElement(r,c-1)) { 
+				emptyAdjacent.add(grid[r][c-1]); 
+				}
+			}
+
+		
+		return emptyAdjacent;
 	}
 	public boolean isValid(int r, int c) {
 		if(r < 0 || c < 0 || r >= numRow || c >= numCol) {

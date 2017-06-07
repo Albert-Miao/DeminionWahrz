@@ -1,8 +1,5 @@
 package Element;
 
-import java.awt.Graphics;
-import javax.swing.ImageIcon;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -81,16 +78,14 @@ public abstract class Unit extends Element
 		 tilesToExclude.add(getGameGrid().getTile(getXPos(), getYPos()));
 		 for(int i = 0; i < rangeMax; i++){
 			 for(Tile tile: inRangeTiles){
-				 //toAddTiles.addAll(getGameGrid().getEmptyAdjacentTiles(tile));
-				 //need a getEmptyAdjacentLocations method for gameGrid
+				 tilesToAdd.addAll(getGameGrid().getEmptyAdjacentTiles(tile.getXCoord(),tile.getYCoord()));
 			 }
 			 inRangeTiles.addAll(tilesToAdd);
 			 tilesToAdd.clear();
 		 }
 		 for(int i = 0; i < rangeMin - 1; i++){
 			 for(Tile tile : tilesToExclude){
-				 //toAddTiles.addAll(getGameGrid().getEmptyAdjacentTiles(tile));
-				 //need getEmptyAdjacentTiles method from GameGrid
+				 tilesToAdd.addAll(getGameGrid().getEmptyAdjacentTiles(tile.getXCoord(),tile.getYCoord()));
 			 }
 			 tilesToExclude.addAll(tilesToAdd);
 			 tilesToAdd.clear();

@@ -22,6 +22,7 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 	JButton endTurnButton;
 	
 	private ArrayList<Tile> lighted = new ArrayList<Tile>();
+	private ArrayList<Tile> attackable = new ArrayList<Tile>();
 	private Tile tileToMoveTo;
 	private boolean moving;
 	
@@ -92,7 +93,7 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 		
 		Unit firstE = new Spearman(5, 5, battleGround);
 		Unit secondE = new Spearman(3, 7, battleGround);
-		Unit thirdE = new Knight(9, 9, battleGround);
+		Unit thirdE = new Knight(4, 9, battleGround);
 	}
 	
 	public void actionPerformed(ActionEvent e){
@@ -105,8 +106,18 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 				moveButton.setEnabled(false);
 				attackButton.setEnabled(false);
 				endTurnButton.setEnabled(true);
-				battleGround.getTile(battleGround.getSelected().getXPos(), battleGround.getSelected().getYPos()).unHighlightTile();
+				if(battleGround.getSelected() != null) {
+					battleGround.getTile(battleGround.getSelected().getXPos(), battleGround.getSelected().getYPos()).unHighlightTile();
+				}
 				battleGround.setSelected(null);
+				for(Tile t : lighted) {
+					t.unHighlightTile();
+				}
+				for(Tile t : attackable) {
+					t.unHighlightTile();
+				}
+				lighted.clear();
+				attackable.clear();
 				battleGround.repaint();
 				break;
 			
@@ -126,6 +137,16 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 				break;
 			
 			case "attack":
+				battleGround.setMode(GameMode.ATTACK);
+				moveButton.setEnabled(false);
+				attackButton.setEnabled(false);
+				endTurnButton.setEnabled(false);
+				
+				attackable.addAll(battleGround.getSelectedAsUnit().getRange());
+				for(Tile t : attackable) {
+					t.highlightTileRed();
+				}
+				battleGround.repaint();
 				break;
 			
 			case "end turn":
@@ -167,7 +188,7 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 			battleGround.setSelected(battleGround.getElement(x, y));
 			battleGround.getTile(battleGround.getSelected().getXPos(), battleGround.getSelected().getYPos()).highlightTile();
 			battleGround.repaint();
-		}else if((x < battleGround.getRow() || y < battleGround.getCol()) &&
+		}else if((x < battleGround.getRow() || y < battleGround.getCol()) && //Move
 				battleGround.getMode() == GameMode.MOVE &&
 				!battleGround.hasElement(x, y)){
 			battleGround.getTile(battleGround.getSelected().getXPos(), battleGround.getSelected().getYPos()).unHighlightTile();
@@ -181,6 +202,28 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 			lighted.clear();
 			
 			battleGround.setMode(GameMode.DEFAULT);
+			deselectButton.setEnabled(false);
+			endTurnButton.setEnabled(true);
+			battleGround.repaint();
+		}
+		else if( (x < battleGround.getRow() || y < battleGround.getCol()) && battleGround.getMode() == GameMode.ATTACK && //Attack
+				battleGround.getSelected() instanceof Unit) {
+			battleGround.getSelectedAsUnit().attack(battleGround.getElement(x, y));
+			System.out.print("Attacked!");
+			
+			for(Tile t : attackable) {
+				t.unHighlightTile();
+			}
+			lighted.clear();
+			for(Tile t : lighted) {
+				t.unHighlightTile();
+			}
+			attackable.clear();
+			
+			battleGround.getTile(battleGround.getSelected().getXPos(),battleGround.getSelected().getYPos()).unHighlightTile();
+			battleGround.setSelected(null);
+			battleGround.setMode(GameMode.DEFAULT);
+			attackButton.setEnabled(false);
 			deselectButton.setEnabled(false);
 			endTurnButton.setEnabled(true);
 			battleGround.repaint();
