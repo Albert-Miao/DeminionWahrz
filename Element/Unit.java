@@ -3,6 +3,7 @@ package Element;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Iterator;
 
 import Element.Tile;
 
@@ -61,7 +62,7 @@ public abstract class Unit extends Element
 			 for(Tile tile : moveableTiles){
 				 int r = tile.getXCoord();
 				 int c = tile.getYCoord(); 
-				 tilesToAdd.addAll(getGameGrid().getAdjacentTiles(r,c));
+				 tilesToAdd.addAll(getGameGrid().getEmptyAdjacentTiles(r,c));
 			 }
 			 moveableTiles.addAll(tilesToAdd);
 			 tilesToAdd.clear();
@@ -74,18 +75,28 @@ public abstract class Unit extends Element
 		 Set<Tile> inRangeTiles = new HashSet<Tile>();
 		 Set<Tile> tilesToExclude = new HashSet<Tile>();
 		 Set<Tile> tilesToAdd = new HashSet<Tile>();
+		 
 		 inRangeTiles.add(getGameGrid().getTile(getXPos(), getYPos()));
 		 tilesToExclude.add(getGameGrid().getTile(getXPos(), getYPos()));
 		 for(int i = 0; i < rangeMax; i++){
 			 for(Tile tile: inRangeTiles){
-				 tilesToAdd.addAll(getGameGrid().getEmptyAdjacentTiles(tile.getXCoord(),tile.getYCoord()));
+				 if(getRace().equals(Race.AZURE)) {
+					 tilesToAdd.addAll(getGameGrid().getEnemyAdjacentTiles(tile.getXCoord(),tile.getYCoord(), Race.TOKKOKINO));
+				 }else if(getRace().equals(Race.TOKKOKINO)) {
+					 tilesToAdd.addAll(getGameGrid().getEnemyAdjacentTiles(tile.getXCoord(),tile.getYCoord(), Race.AZURE));
+				 }
+				 
 			 }
 			 inRangeTiles.addAll(tilesToAdd);
 			 tilesToAdd.clear();
 		 }
 		 for(int i = 0; i < rangeMin - 1; i++){
 			 for(Tile tile : tilesToExclude){
-				 tilesToAdd.addAll(getGameGrid().getEmptyAdjacentTiles(tile.getXCoord(),tile.getYCoord()));
+				 if(getRace().equals(Race.AZURE)) {
+					 tilesToAdd.addAll(getGameGrid().getEnemyAdjacentTiles(tile.getXCoord(),tile.getYCoord(), Race.TOKKOKINO));
+				 }else if(getRace().equals(Race.TOKKOKINO)) {
+					 tilesToAdd.addAll(getGameGrid().getEnemyAdjacentTiles(tile.getXCoord(),tile.getYCoord(), Race.AZURE));
+				 }
 			 }
 			 tilesToExclude.addAll(tilesToAdd);
 			 tilesToAdd.clear();

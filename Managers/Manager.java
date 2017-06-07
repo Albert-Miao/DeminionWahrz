@@ -23,8 +23,6 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 	
 	private ArrayList<Tile> lighted = new ArrayList<Tile>();
 	private ArrayList<Tile> attackable = new ArrayList<Tile>();
-	private Tile tileToMoveTo;
-	private boolean moving;
 	
 	private GameGrid battleGround;
 	
@@ -143,6 +141,7 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 				endTurnButton.setEnabled(false);
 				
 				attackable.addAll(battleGround.getSelectedAsUnit().getRange());
+				System.out.println(attackable);
 				for(Tile t : attackable) {
 					t.highlightTileRed();
 				}
@@ -209,7 +208,7 @@ public class Manager extends JFrame implements ActionListener, MouseListener{
 		else if( (x < battleGround.getRow() || y < battleGround.getCol()) && battleGround.getMode() == GameMode.ATTACK && //Attack
 				battleGround.getSelected() instanceof Unit) {
 			battleGround.getSelectedAsUnit().attack(battleGround.getElement(x, y));
-			System.out.print("Attacked!");
+			System.out.println("Attacked!");
 			
 			for(Tile t : attackable) {
 				t.unHighlightTile();

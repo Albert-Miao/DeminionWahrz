@@ -143,6 +143,20 @@ public class GameGrid extends JPanel
 		
 		return adjacent;
 	}
+	public ArrayList<Tile> getAdjacentTilesFull(int r, int c) {
+		ArrayList<Tile> adjacent = new ArrayList<Tile>();
+		
+		if (isValid(r+1,c)) { adjacent.add(grid[r+1][c]); }
+		if (isValid(r-1,c)) { adjacent.add(grid[r-1][c]); }
+		if (isValid(r,c+1)) { adjacent.add(grid[r][c+1]); }
+		if (isValid(r,c-1)) { adjacent.add(grid[r][c-1]); }
+		if (isValid(r+1,c+1)) { adjacent.add(grid[r+1][c+1]); }
+		if (isValid(r+1,c-1)) { adjacent.add(grid[r+1][c-1]); }
+		if (isValid(r-1,c+1)) { adjacent.add(grid[r-1][c+1]); }
+		if (isValid(r-1,c-1)) { adjacent.add(grid[r-1][c-1]); }
+		
+		return adjacent;
+	}
 	public ArrayList<Tile> getEmptyAdjacentTiles(int r, int c) {
 		ArrayList<Tile> emptyAdjacent = new ArrayList<Tile>();
 		
@@ -166,9 +180,21 @@ public class GameGrid extends JPanel
 				emptyAdjacent.add(grid[r][c-1]); 
 				}
 			}
-
 		
 		return emptyAdjacent;
+	}
+	public ArrayList<Tile> getEnemyAdjacentTiles(int r, int c, Race race) {
+		ArrayList<Tile> occupiedAdjacent = new ArrayList<Tile>();
+		
+		ArrayList<Tile> adjacent = getAdjacentTilesFull(r,c);
+		
+		for(Tile t : adjacent) {
+			if(hasElement(t.getXCoord(),t.getYCoord()) && (!getTile(r,c).getElement().getRace().equals(race))) {
+				occupiedAdjacent.add(t);
+			}
+		}
+		System.out.println(occupiedAdjacent);
+		return occupiedAdjacent;
 	}
 	public boolean isValid(int r, int c) {
 		if(r < 0 || c < 0 || r >= numRow || c >= numCol) {
