@@ -15,6 +15,5 @@ public class Desert extends Tile{
 		Unit u = (Unit) getElement();
 		u.setDamageDealt(u.getAttack() + attMod);
 		u.setDefenseDealt(u.getDefense() + defMod);
-		System.out.println("Hit it!");
 	}
 }

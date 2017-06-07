@@ -3,12 +3,12 @@ package Element.Tiles;
 import Element.Tile;
 import Element.Unit;
 
-public class Regular extends Tile{
-	private int attMod = 0;
-	private int defMod = 0;
+public class Mountain extends Tile{
+	private int attMod = 1;
+	private int defMod = 3;
 	
-	public Regular(int x, int y){
-		super(x, y, 50, 50, 1, "DeminionWahrz/Element/Tiles/res/Regular.png");
+	public Mountain(int x, int y){
+		super(x, y, 50, 50, 1, "DeminionWahrz/Element/Tiles/res/Mountain.png");
 	}
 	
 	public void modUnit(){
